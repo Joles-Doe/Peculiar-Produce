@@ -25,23 +25,33 @@ public class PlayerStuffDJ : MonoBehaviour
     //active block is the last block in the list
     public List<BlockBehaviour> blocks = new();
 
-    public Rigidbody rb;
+    
+
 
     RaycastHit hit;
-
     public BlockBehaviour targetedBlock;
 
+
+    public Rigidbody rb;
     public float horizontalMovement;
     public float verticalMovement;
-
     public float speed = 10;
-    
+    public bool isGrounded = true;
+
+    Vector3 blockOffset;
+
+    //Give the player a gameobject that follows their hand
+    public transform playerHand;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        blockOffset = new Vector3(0, 1, 0);
+
+
     }
 
     // Update is called once per frame
@@ -58,29 +68,63 @@ public class PlayerStuffDJ : MonoBehaviour
                 {
                     forward = true;
                 }
+                else
+                {
+                    forward = false;
+                }
+
                 if (block.blockType == BlockType.BACK)
                 {
                     back = true;
                 }
+                else
+                {
+                    back = false;
+                }
+
                 if (block.blockType == BlockType.LEFT)
                 {
                     left = true;
                 }
+                else
+                {
+                    left = false;
+                }
+
                 if (block.blockType == BlockType.RIGHT)
                 {
-                    forward = true;
+                    right = true;
                 }
-                if(block.blockType == BlockType.JUMP)
+                else
+                {
+                    right = false;
+                }
+
+                if (block.blockType == BlockType.JUMP)
                 {
                     jump = true;
                 }
+                else
+                {
+                    jump = false;
+                }
+
                 if (block.blockType == BlockType.THROW)
                 {
                     chuck = true;
                 }
-                if(block.blockType == BlockType.STRENGTH)
+                else
+                {
+                    chuck = false;
+                }
+
+                if (block.blockType == BlockType.STRENGTH)
                 {
                     strength = true;
+                }
+                else
+                {
+                    strength = false;
                 }
 
 
@@ -106,6 +150,9 @@ public class PlayerStuffDJ : MonoBehaviour
                 ThrowBlock();
             }
         }
+
+        //keep player hand on the player's body
+        playerHand.position = Vector3.zero;
         
 
 
@@ -136,10 +183,15 @@ public class PlayerStuffDJ : MonoBehaviour
             rb.velocity = Vector3.left * speed;
         }
 
-        if(jump && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if(jump && isGrounded && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             //change this to stop it from flying
             rb.velocity = Vector3.up * speed;
+
+
+            isGrounded = false;
+
+
         }
 
         //raycast for block collision
@@ -161,14 +213,25 @@ public class PlayerStuffDJ : MonoBehaviour
             targetedBlock = null;
             pickup = false;
         }
+
+
+        //stack picked up blocks onto character
+        for(int i = 0; i < blocks.Count - 1; i++)
+        {
+            block.rb.Move(rb.position + blockOffset * (i + 1));
+        }
+
+        blocks[^1].rb.Move(playerHand.position);
+
+
+
     }
 
 
 
     public void PickupBlock(BlockBehaviour _block)
     {
-        //TODO: Link block to player's hand
-
+        
 
         blocks.Add(_block);
     }
@@ -183,6 +246,15 @@ public class PlayerStuffDJ : MonoBehaviour
         
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    
    
 
 }
