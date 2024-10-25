@@ -12,6 +12,7 @@ public class PlayerStuffDJ : MonoBehaviour
     
     public bool chuck = false;
     public bool jump = false;
+    public bool strength = false;
 
     public List<BlockBehaviour> blocks = new();
 
@@ -49,8 +50,17 @@ public class PlayerStuffDJ : MonoBehaviour
                 }
                 if(block.blockType == BlockType.JUMP)
                 {
-
+                    jump = true;
                 }
+                if (block.blockType == BlockType.THROW)
+                {
+                    chuck = true;
+                }
+                if(block.blockType == BlockType.STRENGTH)
+                {
+                    strength = true;
+                }
+
 
             }
 
