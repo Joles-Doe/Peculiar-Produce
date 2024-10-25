@@ -45,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
         //Allow players to move and grab their positions
         moveX = true;
         moveY = true;
+        moveZ = true;
 
+        moveUp = true;
         moveLeft = true;
+        moveDown = true;
         moveRight = true;
 
         posX = transform.position.x;
