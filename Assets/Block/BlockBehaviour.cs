@@ -42,13 +42,15 @@ public class BlockBehaviour : MonoBehaviour
     void Update()
     {
         
-
+       
 
 
 
 
 
     }
+
+  
 
     private void OnCollisionEnter(Collision collision)
     {

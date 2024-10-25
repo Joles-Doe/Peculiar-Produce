@@ -16,17 +16,20 @@ public class PlayerStuffDJ : MonoBehaviour
 
     public List<BlockBehaviour> blocks = new();
 
+    public Rigidbody rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
         foreach(BlockBehaviour block in blocks) 
         {
 
@@ -70,8 +73,27 @@ public class PlayerStuffDJ : MonoBehaviour
         }
 
 
-
-
-
     }
+
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 20, LayerMask.GetMask("Block")))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+            Debug.Log("Looking at Block");
+        }
+    }
+
+
+
+    public void PickupBlock(BlockBehaviour _block)
+    {
+        blocks.Add(_block);
+    }
+
+   
+
 }
