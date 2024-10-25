@@ -10,10 +10,6 @@ public class CameraControl : MonoBehaviour
     public Transform player2;
     //Variables - Adjust value in script
     [HideInInspector]
-    public float offsetY = 20f;
-    [HideInInspector]
-    public float offsetZ = -12f;
-    [HideInInspector]
     public bool canMove = true;
 
     // Update is called once per frame
@@ -31,7 +27,7 @@ public class CameraControl : MonoBehaviour
         Vector3 maxLimit = new Vector3(midPoint.x + cWidth / 2, midPoint.y + cHeight / 2);
 
         //Calculate new camera position
-        Vector3 targetPosition = new Vector3(midPoint.x, 10, offsetZ);
+        Vector3 targetPosition = new Vector3(midPoint.x, transform.position.y, transform.position.z);
 
         //Clamp camera position to keep players in view
         targetPosition.x = Mathf.Clamp(targetPosition.x, minLimit.x, maxLimit.x);
@@ -41,15 +37,5 @@ public class CameraControl : MonoBehaviour
         {
             transform.position = targetPosition;
         }
-    }
-
-    public void DisableCameraMovement()
-    {
-        canMove = false;
-    }
-
-    public void EnableCameraMovement()
-    {
-        canMove = true;
     }
 }

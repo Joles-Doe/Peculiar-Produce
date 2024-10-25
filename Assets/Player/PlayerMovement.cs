@@ -12,14 +12,28 @@ public class PlayerMovement : MonoBehaviour
     public bool moveX;
 
     [HideInInspector]
-    public float moveSpeed = 5f;
-
-    [HideInInspector] 
     public float posY;
     [HideInInspector]
     public bool moveY;
 
+    [HideInInspector]
+    public float posZ;
+    [HideInInspector]
+    public bool moveZ;
+
+    bool moveUp;
+    bool moveLeft;
+    bool moveDown;
+    bool moveRight;
+
+    [HideInInspector]
+    public float moveSpeed = 5f;
+
+    
+
+    public List<KeyCode> keyUp = new List<KeyCode> { KeyCode.W, KeyCode.UpArrow };
     public List<KeyCode> keyLeft = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
+    public List<KeyCode> keyDown = new List<KeyCode> { KeyCode.S, KeyCode.DownArrow };
     public List<KeyCode> keyRight = new List<KeyCode> { KeyCode.D, KeyCode.RightArrow };
 
     public bool isPlayerOne;
@@ -31,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         //Allow players to move and grab their positions
         moveX = true;
         moveY = true;
+        moveZ = true;
+
+        moveUp = true;
+        moveLeft = true;
+        moveDown = true;
+        moveRight = true;
 
         posX = transform.position.x;
         posY = transform.position.y;
@@ -51,23 +71,58 @@ public class PlayerMovement : MonoBehaviour
     {
         posX = transform.position.x;
         posY = transform.position.y;
+        posZ = transform.position.z;
 
         //Movement listeners
-        if (Input.GetKey(keyLeft[playerIndex]))
+        if (Input.GetKey(keyUp[playerIndex]))
         {
-            if (moveX == true)
+            if (moveZ == true && moveUp == true)
             {
-                posX += moveSpeed * Time.deltaTime;
+                posZ += moveSpeed * Time.deltaTime;
             }
         }
-        if (Input.GetKey(keyRight[playerIndex]))
+        if (Input.GetKey(keyLeft[playerIndex]))
         {
-            if (moveX == true)
+            if (moveX == true && moveLeft == true)
             {
                 posX -= moveSpeed * Time.deltaTime;
             }
         }
+        if (Input.GetKey(keyDown[playerIndex]))
+        {
+            if (moveZ == true && moveDown == true)
+            {
+                posZ -= moveSpeed * Time.deltaTime;
+            }
+        }
+        if (Input.GetKey(keyRight[playerIndex]))
+        {
+            if (moveX == true && moveRight == true)
+            {
+                posX += moveSpeed * Time.deltaTime;
+            }
+        }
 
-        transform.position = new Vector3(posX, posY, -28f);
+        transform.position = new Vector3(posX, posY, posZ);
+    }
+
+    public void LockUpMovement(bool _lock)
+    {
+        moveUp = _lock;
+    }
+
+    public void LockLeftMovement(bool _lock)
+    {
+        moveLeft = _lock;
+    }
+
+    public void LockDownMovement(bool _lock)
+    {
+        moveDown = _lock;
+    }
+
+    public void LockRightMovement(bool _lock)
+    {
+        moveRight = _lock;
     }
 }
