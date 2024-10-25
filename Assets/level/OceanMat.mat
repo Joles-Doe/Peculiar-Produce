@@ -27,7 +27,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -50,17 +50,28 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamScale: 5
-    - _FoamSpeed: 3
+    - _Depth_Fade: 0.2
+    - _FoamScale: 2
+    - _FoamSpeed: 6
+    - _Foam_Depth: 0.01
+    - _Foam_Noise_Scale: 3
+    - _Foam_Ripple_Speed: 0.3
+    - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 5000
+    - _RippleDensity: 250
     - _RippleSlimness: 4
     - _RippleSpeed: 3
-    - _WaveScale: 5
-    - _WaveSpeed: 1
+    - _Smoothness: 0.9
+    - _Water_Heights: 0.3
+    - _Water_Noise_Scale: 2
+    - _WaveHeight: 0.7
+    - _WaveScale: 2
+    - _WaveSpeed: 0.1
     m_Colors:
-    - _BaseColor: {r: 0.21698113, g: 0.4646833, b: 0.8679245, a: 0}
-    - _FoamColor: {r: 0.34420606, g: 0.6888784, b: 0.8584906, a: 0}
-    - _RippleColor: {r: 0.3987629, g: 0.6325423, b: 0.8207547, a: 0}
+    - _BaseColor: {r: 0.08116765, g: 0.56935424, b: 0.9056604, a: 0}
+    - _FoamColor: {r: 0.40583837, g: 0.7415967, b: 0.9056604, a: 0}
+    - _Foam_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _RippleColor: {r: 0.3693485, g: 0.6858796, b: 0.9433962, a: 0}
+    - _ShallowColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
