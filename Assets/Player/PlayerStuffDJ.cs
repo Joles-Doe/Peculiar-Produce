@@ -41,7 +41,7 @@ public class PlayerStuffDJ : MonoBehaviour
     Vector3 blockOffset;
 
     //Give the player a gameobject that follows their hand
-    public transform playerHand;
+    //public transform playerHand;
 
 
 
@@ -152,7 +152,7 @@ public class PlayerStuffDJ : MonoBehaviour
         }
 
         //keep player hand on the player's body
-        playerHand.position = Vector3.zero;
+        //playerHand.position = Vector3.zero;
         
 
 
@@ -216,12 +216,12 @@ public class PlayerStuffDJ : MonoBehaviour
 
 
         //stack picked up blocks onto character
-        for(int i = 0; i < blocks.Count - 1; i++)
+        /*for(int i = 0; i < blocks.Count - 1; i++)
         {
             block.rb.Move(rb.position + blockOffset * (i + 1));
         }
 
-        blocks[^1].rb.Move(playerHand.position);
+        blocks[^1].rb.Move(playerHand.position);*/
 
 
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4586346730904606736
+--- !u!114 &-6650029599137729804
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,19 +20,17 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MikeIll
+  m_Name: ShareOn
   m_Shader: {fileID: -6465566751694194690, guid: 195730d0b20d9054a926a44d1f4f941d, type: 3}
   m_Parent: {fileID: 2100000, guid: f8e74e631192a6847bfa58bbe9210b9a, type: 2}
-  m_ModifiedSerializedProperties: 18
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - _EMISSION
-  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   - _SPECULAR_SETUP
-  m_LightmapFlags: 1
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -40,33 +38,20 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Layer_6CF42A07:
-        m_Texture: {fileID: 2800000, guid: a55295cfccc906649b0d6ceb3e6961c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7b02eed0c704d6a4c8656a324553a6c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: a55295cfccc906649b0d6ceb3e6961c3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: a55295cfccc906649b0d6ceb3e6961c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7b02eed0c704d6a4c8656a324553a6c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a55295cfccc906649b0d6ceb3e6961c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7b02eed0c704d6a4c8656a324553a6c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _Metallic: 0
     - _QueueControl: 0
-    - _ReceiveShadows: 1
-    - _Smoothness: 0.523
-    - _SmoothnessTextureChannel: 1
-    - _Surface: 0
-    - _WorkflowMode: 0
-    - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
