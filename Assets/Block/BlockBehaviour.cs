@@ -30,11 +30,6 @@ public class BlockBehaviour : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
-        
-        
-
-
-
 
     }
 
