@@ -36,6 +36,7 @@ public class PlayerStuffDJ : MonoBehaviour
     public float horizontalMovement;
     public float verticalMovement;
     public float speed = 10;
+    public bool isGrounded = true;
 
     Vector3 blockOffset;
 
@@ -67,29 +68,63 @@ public class PlayerStuffDJ : MonoBehaviour
                 {
                     forward = true;
                 }
+                else
+                {
+                    forward = false;
+                }
+
                 if (block.blockType == BlockType.BACK)
                 {
                     back = true;
                 }
+                else
+                {
+                    back = false;
+                }
+
                 if (block.blockType == BlockType.LEFT)
                 {
                     left = true;
                 }
+                else
+                {
+                    left = false;
+                }
+
                 if (block.blockType == BlockType.RIGHT)
                 {
-                    forward = true;
+                    right = true;
                 }
-                if(block.blockType == BlockType.JUMP)
+                else
+                {
+                    right = false;
+                }
+
+                if (block.blockType == BlockType.JUMP)
                 {
                     jump = true;
                 }
+                else
+                {
+                    jump = false;
+                }
+
                 if (block.blockType == BlockType.THROW)
                 {
                     chuck = true;
                 }
-                if(block.blockType == BlockType.STRENGTH)
+                else
+                {
+                    chuck = false;
+                }
+
+                if (block.blockType == BlockType.STRENGTH)
                 {
                     strength = true;
+                }
+                else
+                {
+                    strength = false;
                 }
 
 
@@ -148,10 +183,15 @@ public class PlayerStuffDJ : MonoBehaviour
             rb.velocity = Vector3.left * speed;
         }
 
-        if(jump && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if(jump && isGrounded && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             //change this to stop it from flying
             rb.velocity = Vector3.up * speed;
+
+
+            isGrounded = false;
+
+
         }
 
         //raycast for block collision
@@ -206,6 +246,15 @@ public class PlayerStuffDJ : MonoBehaviour
         
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    
    
 
 }
