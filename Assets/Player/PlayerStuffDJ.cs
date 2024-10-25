@@ -25,23 +25,32 @@ public class PlayerStuffDJ : MonoBehaviour
     //active block is the last block in the list
     public List<BlockBehaviour> blocks = new();
 
-    public Rigidbody rb;
+    
+
 
     RaycastHit hit;
-
     public BlockBehaviour targetedBlock;
 
+
+    public Rigidbody rb;
     public float horizontalMovement;
     public float verticalMovement;
-
     public float speed = 10;
-    
+
+    Vector3 blockOffset;
+
+    //Give the player a gameobject that follows their hand
+    public transform playerHand;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        blockOffset = new Vector3(0, 1, 0);
+
+
     }
 
     // Update is called once per frame
@@ -106,6 +115,9 @@ public class PlayerStuffDJ : MonoBehaviour
                 ThrowBlock();
             }
         }
+
+        //keep player hand on the player's body
+        playerHand.position = Vector3.zero;
         
 
 
@@ -161,14 +173,25 @@ public class PlayerStuffDJ : MonoBehaviour
             targetedBlock = null;
             pickup = false;
         }
+
+
+        //stack picked up blocks onto character
+        for(int i = 0; i < blocks.Count - 1; i++)
+        {
+            block.rb.Move(rb.position + blockOffset * (i + 1));
+        }
+
+        blocks[^1].rb.Move(playerHand.position);
+
+
+
     }
 
 
 
     public void PickupBlock(BlockBehaviour _block)
     {
-        //TODO: Link block to player's hand
-
+        
 
         blocks.Add(_block);
     }
