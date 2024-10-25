@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ocean
-  m_Shader: {fileID: -6465566751694194690, guid: 83c3931b73d7310439c9eb7b320a8132, type: 3}
+  m_Name: PropBaseShader
+  m_Shader: {fileID: -6465566751694194690, guid: 195730d0b20d9054a926a44d1f4f941d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -37,31 +37,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth_Fade: 10
-    - _Edge_Foam_Tiling: 2
-    - _Float: 0
-    - _Foam_Color_1: 0
-    - _Foam_Cutoff: 3
-    - _Foam_Density: 25
-    - _Foam_Dist: 10
-    - _Foam_Fac: 0.3
-    - _Foam_Noise_Scale: 2
-    - _Foam_Ripple_Speed: 1
-    - _Foam_Thickness: 1
-    - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 1
-    - _Water_Height: 0.05
-    - _Water_Noise_Scale: 2
-    - _Water_Speed: 0.2
-    m_Colors:
-    - _Deep_Color: {r: 0.27411887, g: 0.47776216, b: 0.75471693, a: 1}
-    - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Shallow_Color: {r: 0.32547167, g: 0.8132075, b: 1, a: 1}
-    - _Water_Color: {r: 0.22241008, g: 0.6161053, b: 0.9622641, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &1246578457854367136
+--- !u!114 &9207420843294123344
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
