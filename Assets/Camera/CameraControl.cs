@@ -21,10 +21,13 @@ public class CameraControl : MonoBehaviour
 
     int targetIndex = 0;
 
+    Vector3 midPoint;
+
     bool lerpMove = false;
     bool lerpInverse = false;
     float ratio;
 
+    bool targetNull = false;
     float distance;
 
     private void Start()
@@ -42,57 +45,69 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        //Find distance between players
-        distance = Vector3.Distance(player1.position, player2.position);
-
-        //If either player is nearing camera border
-        if (distance > 12)
+        if (player1 == null || player2 == null)
         {
-            //Check if camera should be zooming in
-            if (lerpInverse == false)
+            if (player1 == null)
             {
-                lerpInverse = true;
-                targetIndex = 1;
-
-                minZ = camOffsetZ;
-                minY = transform.position.y;
-
-                lerpMove = true;
-                ratio = 0;
+                midPoint = player2.position;
+            }
+            else if (player2 == null)
+            {
+                midPoint = player1.position;
             }
         }
         else
         {
-            //Check if camera should be zooming in
-            if (lerpInverse == true)
+            distance = Vector3.Distance(player1.position, player2.position);
+
+            if (distance > 12)
             {
-                lerpInverse = false;
-                targetIndex = 0;
+                //Check if camera should be zooming in
+                if (lerpInverse == false)
+                {
+                    lerpInverse = true;
+                    targetIndex = 1;
 
-                minZ = camOffsetZ;
-                minY = transform.position.y;
+                    minZ = camOffsetZ;
+                    minY = transform.position.y;
 
-                lerpMove = true;
-                ratio = 0;
+                    lerpMove = true;
+                    ratio = 0;
+                }
             }
-        }
-
-        if (lerpMove == true)
-        {
-            //Lerp Y and Z values
-            currentY = Mathf.Lerp(minY, yTargets[targetIndex], ratio);
-            camOffsetZ = Mathf.Lerp(minZ, zTargets[targetIndex], ratio);
-
-            ratio += Time.deltaTime;
-
-            if (currentY == yTargets[targetIndex] && camOffsetZ == zTargets[targetIndex])
+            else
             {
-                lerpMove = false;
-            }
-        }
+                //Check if camera should be zooming in
+                if (lerpInverse == true)
+                {
+                    lerpInverse = false;
+                    targetIndex = 0;
 
-        //Calculate camera midpoint
-        Vector3 midPoint = (player1.position + player2.position) / 2;
+                    minZ = camOffsetZ;
+                    minY = transform.position.y;
+
+                    lerpMove = true;
+                    ratio = 0;
+                }
+            }
+
+            if (lerpMove == true)
+            {
+                //Lerp Y and Z values
+                currentY = Mathf.Lerp(minY, yTargets[targetIndex], ratio);
+                camOffsetZ = Mathf.Lerp(minZ, zTargets[targetIndex], ratio);
+
+                ratio += Time.deltaTime;
+
+                if (currentY == yTargets[targetIndex] && camOffsetZ == zTargets[targetIndex])
+                {
+                    lerpMove = false;
+                }
+            }
+
+            //Calculate camera midpoint
+            midPoint = (player1.position + player2.position) / 2;
+        }
         transform.position = new Vector3(midPoint.x, midPoint.y + currentY - 3, midPoint.z - camOffsetZ);
     }
 }
