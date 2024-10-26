@@ -104,7 +104,7 @@ public class PlayerControl : MonoBehaviour
                 }
                 else
                 {
-                    moveDirection = doActionBlock(block);
+                    moveDirection += doActionBlock(block);
                 }
             }
 
@@ -117,7 +117,7 @@ public class PlayerControl : MonoBehaviour
                 }
                 else
                 {
-                    moveDirection = doActionBlock(block);
+                    moveDirection += doActionBlock(block);
                 }
             }
 
@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
                 }
                 else
                 {
-                    moveDirection = doActionBlock(block);
+                    moveDirection += doActionBlock(block);
                 }
             }
 
@@ -143,10 +143,12 @@ public class PlayerControl : MonoBehaviour
                 }
                 else
                 {
-                    moveDirection = doActionBlock(block);
+                    moveDirection += doActionBlock(block);
                 }
             }
         }
+
+        moveDirection.Normalize();
 
         //print(velocity);
 
@@ -155,6 +157,7 @@ public class PlayerControl : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         controller.Move(moveSpeed * Time.deltaTime * moveDirection);
+
 
 
 
