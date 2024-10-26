@@ -292,14 +292,21 @@ MonoBehaviour:
   posZ: 0
   moveZ: 0
   moveSpeed: 5
+  rotationSpeed: 5
   keyUp: 7700000011010000
   keyLeft: 6100000014010000
   keyDown: 7300000012010000
   keyRight: 6400000013010000
   isPlayerOne: 0
+  animator: {fileID: 86605508}
 --- !u!4 &86605507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
+  m_PrefabInstance: {fileID: 2117495450}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &86605508 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
   m_PrefabInstance: {fileID: 2117495450}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &166269499
@@ -2718,7 +2725,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!153 &850656675
 ConfigurableJoint:
@@ -2732,15 +2739,15 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -11.78, y: 2.6005452, z: -19.5}
+  m_ConnectedAnchor: {x: -0.00000000372529, y: -0.0000000023841857, z: 4.440892e-16}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
-  m_YMotion: 2
+  m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -2775,19 +2782,19 @@ ConfigurableJoint:
   m_XDrive:
     serializedVersion: 4
     positionSpring: 1500
-    positionDamper: 1
+    positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 1500
-    positionDamper: 1
+    positionSpring: 15
+    positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 1500
-    positionDamper: 1
+    positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2795,14 +2802,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 1500
+    positionDamper: 1
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 1500
+    positionDamper: 1
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_SlerpDrive:
@@ -3242,9 +3249,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3677,9 +3684,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 2
-  m_AngularYMotion: 2
-  m_AngularZMotion: 2
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -4887,9 +4894,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -6127,11 +6134,13 @@ MonoBehaviour:
   posZ: 0
   moveZ: 0
   moveSpeed: 5
+  rotationSpeed: 5
   keyUp: 7700000011010000
   keyLeft: 6100000014010000
   keyDown: 7300000012010000
   keyRight: 6400000013010000
   isPlayerOne: 1
+  animator: {fileID: 0}
 --- !u!1001 &1884944051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6486,9 +6495,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1948497917}
     - targetCorrespondingSourceObject: {fileID: 897146649249812813, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 850656674}
@@ -6621,35 +6627,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
   m_PrefabInstance: {fileID: 1948497914}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1948497916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
-  m_PrefabInstance: {fileID: 1948497914}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1948497917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948497916}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe329856ed0d0b4cb13900156272ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posX: 0
-  moveX: 0
-  posY: 0
-  moveY: 0
-  posZ: 0
-  moveZ: 0
-  moveSpeed: 5
-  keyUp: 7700000011010000
-  keyLeft: 6100000014010000
-  keyDown: 7300000012010000
-  keyRight: 6400000013010000
-  isPlayerOne: 0
 --- !u!1 &1952828018
 GameObject:
   m_ObjectHideFlags: 0
@@ -7331,11 +7308,13 @@ MonoBehaviour:
   posZ: 0
   moveZ: 0
   moveSpeed: 5
+  rotationSpeed: 5
   keyUp: 7700000011010000
   keyLeft: 6100000014010000
   keyDown: 7300000012010000
   keyRight: 6400000013010000
   isPlayerOne: 1
+  animator: {fileID: 0}
 --- !u!4 &2046108646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
@@ -7658,9 +7637,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0

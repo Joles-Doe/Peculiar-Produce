@@ -28,9 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public float moveSpeed = 5f;
+    public float rotationSpeed = 5f;
 
     
-
     public List<KeyCode> keyUp = new List<KeyCode> { KeyCode.W, KeyCode.UpArrow };
     public List<KeyCode> keyLeft = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
     public List<KeyCode> keyDown = new List<KeyCode> { KeyCode.S, KeyCode.DownArrow };
@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isPlayerOne;
     int playerIndex;
+
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -64,47 +66,74 @@ public class PlayerMovement : MonoBehaviour
         {
             playerIndex = 1;
         }
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
-        posX = transform.position.x;
-        posY = transform.position.y;
-        posZ = transform.position.z;
+        float posX = transform.position.x;
+        float posY = transform.position.y;
+        float posZ = transform.position.z;
 
-        //Movement listeners
-        if (Input.GetKey(keyUp[playerIndex]))
+        Vector3 moveDirection = Vector3.zero;
+
+        // Movement listeners
+        if (moveX)
         {
-            if (moveZ == true && moveUp == true)
-            {
-                posZ += moveSpeed * Time.deltaTime;
-            }
-        }
-        if (Input.GetKey(keyLeft[playerIndex]))
-        {
-            if (moveX == true && moveLeft == true)
+            if (Input.GetKey(keyLeft[playerIndex]))
             {
                 posX -= moveSpeed * Time.deltaTime;
+                moveDirection += Vector3.left; // Move left
             }
-        }
-        if (Input.GetKey(keyDown[playerIndex]))
-        {
-            if (moveZ == true && moveDown == true)
-            {
-                posZ -= moveSpeed * Time.deltaTime;
-            }
-        }
-        if (Input.GetKey(keyRight[playerIndex]))
-        {
-            if (moveX == true && moveRight == true)
+            if (Input.GetKey(keyRight[playerIndex]))
             {
                 posX += moveSpeed * Time.deltaTime;
+                moveDirection += Vector3.right; // Move right
             }
         }
 
-        transform.position = new Vector3(posX, posY, posZ);
+        if (moveZ)
+        {
+            if (Input.GetKey(keyUp[playerIndex]))
+            {
+                posZ += moveSpeed * Time.deltaTime;
+                moveDirection += Vector3.forward; // Move forward
+            }
+            if (Input.GetKey(keyDown[playerIndex]))
+            {
+                posZ -= moveSpeed * Time.deltaTime;
+                moveDirection += Vector3.back; // Move backward
+            }
+        }
+
+        // Update position
+        Vector3 transformVec = new Vector3(posX, posY, posZ);
+
+        if (transformVec - transform.position != Vector3.zero)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+
+        transform.position = transformVec;
+
+
+        // Rotate to face the direction of movement
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
+
+
 
     public void LockUpMovement(bool _lock)
     {
