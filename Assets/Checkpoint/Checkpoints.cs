@@ -14,7 +14,7 @@ public class Checkpoints : MonoBehaviour
             if (_player.GetComponent<CheckpointHolder>().GetRespawnLocation() != checkpoint)
             {
                 print("New Checkpoint!");
-                _player.GetComponent<CheckpointHolder>().ChangeRespawnLocation(checkpoint);
+                _player.GetComponent<CheckpointHolder>().SetRespawnLocation(checkpoint);
             }
         }
     }

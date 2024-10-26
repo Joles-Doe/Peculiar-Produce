@@ -44,7 +44,6 @@ public class CameraControl : MonoBehaviour
     {
         //Find distance between players
         distance = Vector3.Distance(player1.position, player2.position);
-        print(distance);
 
         //If either player is nearing camera border
         if (distance > 12)
