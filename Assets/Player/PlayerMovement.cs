@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public CharacterController controller;
 
-    [HideInInspector]
     public PlayerStuffDJ blockAccessParameters;
 
     public float moveSpeed = 5f;
