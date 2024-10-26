@@ -21,7 +21,8 @@ public class BlockBehaviour : MonoBehaviour
     public BlockType blockType;
     public Rigidbody rb;
 
-    public bool collided = false;
+    public bool collided;
+    public bool picked;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,8 @@ public class BlockBehaviour : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-
+        collided = false;
+        picked = false;
 
     }
 
@@ -47,24 +49,22 @@ public class BlockBehaviour : MonoBehaviour
 
   
 
-    private void OnCollisionEnter(Collision collision)
-    {
+   
 
-        if(!collided)
-        {
-            rb.AddExplosionForce(2, transform.position, 1,50,ForceMode.Impulse);
-        }
-        
-    
+
+    public void SetCollided(bool _collided)
+    {
+        collided= _collided;
     }
 
-    private void OnCollisionExit(Collision collision)
+    public void SetPicked(bool _picked)
     {
-        collided = true;
+        picked= _picked;
     }
 
+    public bool GetPicked() { return picked; }
 
-
+    public bool GetCollided() { return collided; }
 
 
 
