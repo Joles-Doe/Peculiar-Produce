@@ -30,8 +30,8 @@ public class BlockBehaviour : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-        picked = false;
         collided = false;
+        picked = false;
 
     }
 
@@ -52,7 +52,19 @@ public class BlockBehaviour : MonoBehaviour
    
 
 
+    public void SetCollided(bool _collided)
+    {
+        collided= _collided;
+    }
 
+    public void SetPicked(bool _picked)
+    {
+        picked= _picked;
+    }
+
+    public bool GetPicked() { return picked; }
+
+    public bool GetCollided() { return collided; }
 
 
 

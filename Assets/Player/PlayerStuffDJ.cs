@@ -125,7 +125,7 @@ public class PlayerStuffDJ : MonoBehaviour
         //        }
 
 
-        //    }
+            
 
 
         //}
@@ -180,7 +180,7 @@ public class PlayerStuffDJ : MonoBehaviour
         //    rb.velocity = Vector3.left * speed;
         //}
 
-        if(jump && isGrounded && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (jump && isGrounded && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
         {
           
 
@@ -189,6 +189,7 @@ public class PlayerStuffDJ : MonoBehaviour
 
 
         }
+
 
         //raycast for block collision
 
@@ -227,19 +228,28 @@ public class PlayerStuffDJ : MonoBehaviour
 
     public void PickupBlock(BlockBehaviour _block)
     {
-        
 
-        blocks.Add(_block);
+        if (!_block.GetPicked())
+        {
+            blocks.Add(_block);
+            _block.SetPicked(true);
+        }
     }
 
     public void ThrowBlock()
     {
-        //lets it bounce
-        blocks[^1].collided = false;
+        if (blocks.Count != 0)
+        {
+            //lets it bounce
+            blocks[^1].SetCollided( false);
+            blocks[^1].SetPicked(false);
 
-        //remove from player abilities
-        blocks.Remove(blocks[^1]);
-        
+            //remove from player abilities
+            blocks.Remove(blocks[^1]);
+
+
+        }
+
     }
 
     private void OnCollisionStay(Collision collision)
