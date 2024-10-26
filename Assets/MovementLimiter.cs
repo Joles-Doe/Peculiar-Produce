@@ -9,7 +9,7 @@ public class MovementLimiter : MonoBehaviour
     public Camera mainCamera;
     public CameraControl gameCamera;
     public List<PlayerMovement> players = new List<PlayerMovement>();
-    public List<Transform> boundaries = new List<Transform>();
+    public List<Transform> boundaries = new List<Transform>(); // Left Right Up Down
 
     Vector3 position;
     Vector3 scale;
@@ -17,7 +17,10 @@ public class MovementLimiter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main; // Automatically get the main camera if not assigned
+        }
     }
 
     // Update is called once per frame
@@ -25,12 +28,14 @@ public class MovementLimiter : MonoBehaviour
     {
         foreach (PlayerMovement player in players)
         {
-            Vector3 playerPosition = player.transform.position;
+            //Vector3 playerPosition = player.transform.position;
 
-            //Mathf.Clamp(playerPosition.x, boundary.left, boundary.right);
-            //Mathf.Clamp(playerPosition.z, boundary.down, boundary.up);
+            //Mathf.Clamp(playerPosition.x, boundaries[0].position.x, boundaries[1].position.x);
+            //Mathf.Clamp(playerPosition.z, boundaries[3].position.y, boundaries[2].position.y);
 
-            //if (playerPosition.x >= boundary.left + 1)
+            //player.transform.position = playerPosition;
+
+            //if (playerPosition.x <= boundaries[0].position.x)
             //{
             //    player.LockLeftMovement(true);
             //}
@@ -39,7 +44,7 @@ public class MovementLimiter : MonoBehaviour
             //    player.LockLeftMovement(false);
             //}
 
-            //if (playerPosition.x <= boundary.right - 1)
+            //if (playerPosition.x >= boundaries[1].position.x)
             //{
             //    player.LockRightMovement(true);
             //}
@@ -48,7 +53,7 @@ public class MovementLimiter : MonoBehaviour
             //    player.LockRightMovement(false);
             //}
 
-            //if (playerPosition.z <= boundary.up - 1)
+            //if (playerPosition.z >= boundaries[2].position.y)
             //{
             //    player.LockUpMovement(true);
             //}
@@ -57,7 +62,7 @@ public class MovementLimiter : MonoBehaviour
             //    player.LockUpMovement(false);
             //}
 
-            //if (playerPosition.z >= boundary.down + 1)
+            //if (playerPosition.z <= boundaries[3].position.y)
             //{
             //    player.LockDownMovement(true);
             //}
@@ -65,7 +70,6 @@ public class MovementLimiter : MonoBehaviour
             //{
             //    player.LockDownMovement(false);
             //}
-            
         }
     }
 }
