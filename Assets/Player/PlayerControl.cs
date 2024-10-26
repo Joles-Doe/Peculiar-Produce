@@ -60,6 +60,7 @@ public class PlayerControl : MonoBehaviour
         bool isAction3 = isPlayerOne ? Input.GetKey(KeyCode.S) : Input.GetKey(KeyCode.DownArrow);
         bool isAction4 = isPlayerOne ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.RightArrow);
         bool isAction5 = isPlayerOne ? Input.GetKey(KeyCode.LeftShift) : Input.GetKey(KeyCode.RightShift);
+        bool isAction6 = isPlayerOne ? Input.GetKey(KeyCode.LeftControl) : Input.GetKey(KeyCode.RightControl);
 
         Vector3 moveDirection = Vector3.zero;
 
@@ -93,7 +94,6 @@ public class PlayerControl : MonoBehaviour
             {
                 throwIndex = 3;
             }
-
 
             if (throwIndex >= 0)
             {
@@ -159,6 +159,13 @@ public class PlayerControl : MonoBehaviour
                     moveDirection += doActionBlock(block);
                 }
             }
+
+            if (isAction6)
+            {
+                BlockType block = actionList[4];
+                moveDirection += doActionBlock(block);
+
+            }
         }
 
         moveDirection.Normalize();
@@ -166,6 +173,7 @@ public class PlayerControl : MonoBehaviour
         //print(velocity);
         if (!isClimbing)
         {
+
             velocity.y += gravity * Time.deltaTime;
         }
 
@@ -325,7 +333,7 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator JumpWait()
     {
         isGrounded = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
         isGrounded = true;
     }
 

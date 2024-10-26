@@ -95,6 +95,7 @@ public class CameraControl : MonoBehaviour
         //Calculate camera midpoint
         Vector3 midPoint = (player1.position + player2.position) / 2;
 
-        transform.position = new Vector3(midPoint.x, currentY, midPoint.z - camOffsetZ);
+        transform.position = new Vector3(midPoint.x, midPoint.y + currentY - 3, midPoint.z - camOffsetZ);
+
     }
 }
