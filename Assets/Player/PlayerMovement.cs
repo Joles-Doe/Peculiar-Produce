@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float moveSpeed = 5f;
     [HideInInspector] public float rotationSpeed = 5f;
-    [HideInInspector] public float jumpHeight = 2f;
-    [HideInInspector] public float gravity = -2f;
+    [HideInInspector] public float jumpHeight = 0.3f;
+    [HideInInspector] public float gravity = -20f;
     public bool isGrounded;
 
     public PlayerStuffDJ blockParameters;
@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
     public CharacterController controller;
-    
+
+    Vector3 moveDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         moveZ = true;
 
 
-       
+       controller = GetComponent<CharacterController>();
       
         
         //Sets the key index dependent on if player is player 1
@@ -69,27 +70,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
+
+        isGrounded = true;
     }
 
-    // Update is called once per frame
-    // Update is called once per frame
+    
+
+
+
     void Update()
     {
-        float posX = transform.position.x;
-        float posY = transform.position.y;
-        float posZ = transform.position.z;
-
-        Vector3 moveDirection = Vector3.zero;
-
-
-
-        bool isGrounded = controller.isGrounded;
-
-        if (isGrounded )
-        {
-            velocity.y = 0f;
-        }
-
+        moveDirection = Vector3.zero;
 
 
         // Movement listeners
@@ -98,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(keyLeft[playerIndex]))
             {
                 
-                moveDirection += Vector3.left; // Move left
+                moveDirection = Vector3.left; // Move left
 
 
                
@@ -106,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(keyRight[playerIndex]))
             {
                
-                moveDirection += Vector3.right; // Move right
+                moveDirection = Vector3.right; // Move right
             }
 
            
@@ -117,30 +108,40 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(keyUp[playerIndex]))
             {
                
-                moveDirection += Vector3.forward; // Move forward
+                moveDirection = Vector3.forward; // Move forward
             }
             if (Input.GetKey(keyDown[playerIndex]))
             {
                
-                moveDirection += Vector3.back; // Move backward
+                moveDirection = Vector3.back; // Move backward
             }
         }
+
+
         controller.Move(moveSpeed * Time.deltaTime * moveDirection);
 
+
+
         //gravity and jumping
-        if (isGrounded && blockParameters.GetJump() && Input.GetKeyDown(keyAction[playerIndex]) )
+        if (isGrounded && blockParameters.GetJump() && Input.GetKeyDown(keyAction[playerIndex]))
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        
+            velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
+            StartCoroutine(JumpWait());
+            
+
         }
 
+
+
         velocity.y += gravity * Time.deltaTime;
+
+       
 
         controller.Move(velocity * Time.deltaTime);
 
 
         // Update position
-        Vector3 transformVec = new Vector3(posX, posY, posZ);
+       // Vector3 transformVec = new Vector3(posX, posY, posZ);
 
         if (moveDirection != Vector3.zero)
         {
@@ -152,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        transform.position = transformVec;
+        //transform.position = transformVec;
 
 
         // Rotate to face the direction of movement
@@ -161,6 +162,18 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+
+
+      
+    }
+
+
+
+    public IEnumerator JumpWait()
+    {
+        isGrounded = false;
+        yield return new WaitForSeconds(1.5f);
+        isGrounded = true;
     }
 
 

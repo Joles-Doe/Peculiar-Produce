@@ -55,31 +55,33 @@ public class PlayerStuffDJ : MonoBehaviour
     {
 
 
-        foreach (BlockBehaviour block in blocks)
-        {
+        //foreach (BlockBehaviour block in blocks)
+        //{
 
-            if (block.blockType == BlockType.JUMP)
-            {
-                jump = true;
-            }
-          
+        //    if (block.blockType == BlockType.JUMP)
+        //    {
+        //        jump = true;
+        //    }
 
-            if (block.blockType == BlockType.THROW)
-            {
-                chuck = true;
-            }
-           
 
-            if (block.blockType == BlockType.STRENGTH)
-            {
-                strength = true;
-            }
-          
+        //    if (block.blockType == BlockType.THROW)
+        //    {
+        //        chuck = true;
+        //    }
 
+
+        //    if (block.blockType == BlockType.STRENGTH)
+        //    {
+        //        strength = true;
+        //    }
 
 
 
-        }
+
+
+        //}
+
+        jump = true;
 
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Hash))
         {

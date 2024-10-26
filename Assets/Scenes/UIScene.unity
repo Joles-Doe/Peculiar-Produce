@@ -464,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &74296368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +609,7 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -618,8 +618,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 5
-  m_Radius: 2
+  m_Height: 6
+  m_Radius: 3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.05
@@ -1590,7 +1590,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1922,16 +1922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c699863e04fab3742805eb517da2315a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
-  gameCamera: {fileID: 963194232}
-  players:
-  - {fileID: 0}
-  - {fileID: 86605506}
-  boundaries:
-  - {fileID: 216404559}
-  - {fileID: 597084085}
-  - {fileID: 1437650991}
-  - {fileID: 1952828019}
 --- !u!65 &360628919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4055,7 +4045,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4180,7 +4170,7 @@ Transform:
   m_GameObject: {fileID: 920507971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.082265, y: 3.5256763, z: -19.145031}
+  m_LocalPosition: {x: -13.082265, y: 3.917, z: -19.145031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4457,7 +4447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2046108646}
   player2: {fileID: 86605507}
-  canMove: 1
+  camOffsetZ: 9
 --- !u!114 &963194233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7281,7 +7271,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -8517,7 +8507,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -9300,7 +9290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.646
+      value: -0.507
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_LocalPosition.z
