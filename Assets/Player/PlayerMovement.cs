@@ -130,7 +130,7 @@ posX = transform.position.x;
         // Update position
         Vector3 transformVec = new Vector3(posX, posY, posZ);
 
-        if (transformVec - transform.position != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
             animator.SetBool("isMoving", true);
         }
