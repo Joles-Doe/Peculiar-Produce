@@ -22,12 +22,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool moveZ;
 
-
+    [HideInInspector]
     public Vector3 velocity;
+    [HideInInspector]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 5f;
-    public float jumpHeight = 2f;
-    public float gravity = -2f;
+    [HideInInspector] public float rotationSpeed = 5f;
+    [HideInInspector] public float jumpHeight = 2f;
+    [HideInInspector] public float gravity = -2f;
     public bool isGrounded;
 
     public PlayerStuffDJ blockParameters;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public List<KeyCode> keyLeft = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
     public List<KeyCode> keyDown = new List<KeyCode> { KeyCode.S, KeyCode.DownArrow };
     public List<KeyCode> keyRight = new List<KeyCode> { KeyCode.D, KeyCode.RightArrow };
+    public List<KeyCode> keyAction = new List<KeyCode> { KeyCode.LeftShift, KeyCode.RightShift };
 
     public bool isPlayerOne;
     int playerIndex;
@@ -126,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(moveSpeed * Time.deltaTime * moveDirection);
 
         //gravity and jumping
-        if (isGrounded && blockParameters.GetJump()) 
+        if (isGrounded && blockParameters.GetJump() && Input.GetKeyDown(keyAction[playerIndex]) )
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         
