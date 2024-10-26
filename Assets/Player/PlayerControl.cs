@@ -1,24 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class PlayerControl : MonoBehaviour
 {
-    [HideInInspector]
-    public float posX;
-    [HideInInspector]
-    public bool moveX;
-
-    [HideInInspector]
-    public float posY;
-    [HideInInspector]
-    public bool moveY;
-
-    [HideInInspector]
-    public float posZ;
-    [HideInInspector]
-    public bool moveZ;
 
     [HideInInspector]
     public bool isDead;
@@ -28,50 +15,54 @@ public class PlayerControl : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
-    public float jumpHeight = 2f;
-    public float gravity = -2f;
+    public float jumpHeight = 0.3f;
+    public float gravity = -20f;
     public bool isGrounded;
 
     public Animator animator;
     public CharacterController controller;
 
 
-    //active block is the last block in the list
-    public BlockInventory inventory = new BlockInventory();
     public bool isPlayerOne = false;
 
     public List<GameObject> blockPrefabs;
     RaycastHit hit;
     BlockBehaviour closeBlock;
 
-   
+
+    public List<BlockType> actionList;
+
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        moveX = true;
-        moveY = true;
-        moveZ = true;
 
+        controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        isGrounded = true;
 
-    }
+        velocity = Vector3.zero;
+
+}
 
     // Update is called once per frame
     void Update()
     {
-        bool isAction1 = isPlayerOne ? Input.GetKeyDown(KeyCode.W) : Input.GetKeyDown(KeyCode.UpArrow);
-        bool isAction2 = isPlayerOne ? Input.GetKeyDown(KeyCode.A) : Input.GetKeyDown(KeyCode.LeftArrow);
-        bool isAction3 = isPlayerOne ? Input.GetKeyDown(KeyCode.S) : Input.GetKeyDown(KeyCode.DownArrow);
-        bool isAction4 = isPlayerOne ? Input.GetKeyDown(KeyCode.D) : Input.GetKeyDown(KeyCode.RightArrow);
-        bool isAction5 = isPlayerOne ? Input.GetKeyDown(KeyCode.LeftShift) : Input.GetKeyDown(KeyCode.RightShift);
+        bool isAction1 = isPlayerOne ? Input.GetKey(KeyCode.W) : Input.GetKey(KeyCode.UpArrow);
+        bool isAction2 = isPlayerOne ? Input.GetKey(KeyCode.A) : Input.GetKey(KeyCode.LeftArrow);
+        bool isAction3 = isPlayerOne ? Input.GetKey(KeyCode.S) : Input.GetKey(KeyCode.DownArrow);
+        bool isAction4 = isPlayerOne ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.RightArrow);
+        bool isAction5 = isPlayerOne ? Input.GetKey(KeyCode.LeftShift) : Input.GetKey(KeyCode.RightShift);
+
+        Vector3 moveDirection = Vector3.zero;
 
         // If wanting to throw the block
         if (isAction5)
         {
-            int throwIndex = 0;
+            int throwIndex = -1;
 
             if (isAction1)
             {
@@ -90,11 +81,15 @@ public class PlayerControl : MonoBehaviour
                 throwIndex = 3;
             }
 
-            if (inventory.at(throwIndex) != BlockType.NONE)
+
+            if (throwIndex >= 0)
             {
-                BlockType lostBlock = inventory.at(throwIndex);
-                ThrowBlock(lostBlock);
-                inventory.removeAt(throwIndex);
+                if (actionList[throwIndex] != BlockType.NONE)
+                {
+                    BlockType lostBlock = actionList[throwIndex];
+                    ThrowBlock(lostBlock);
+                    actionList[throwIndex] = BlockType.NONE;
+                }
             }
         }
 
@@ -102,130 +97,75 @@ public class PlayerControl : MonoBehaviour
         {
             if (isAction1)
             {
-                BlockType block = inventory.at(0);
+                BlockType block = actionList[0];
                 if (block == BlockType.NONE)
                 {
-                    inventory.addBlock(PickupBlock(), 0);
+                    setBlock(PickupBlock(), 0);
                 }
                 else
                 {
-                    doActionBlock(block);
+                    moveDirection = doActionBlock(block);
                 }
             }
 
             if (isAction2)
             {
-                BlockType block = inventory.at(1);
+                BlockType block = actionList[1];
                 if (block == BlockType.NONE)
                 {
-                    inventory.addBlock(PickupBlock(), 1);
+                    setBlock(PickupBlock(), 1);
                 }
                 else
                 {
-                    doActionBlock(block);
+                    moveDirection = doActionBlock(block);
                 }
             }
 
             if (isAction3)
             {
-                BlockType block = inventory.at(2);
+                BlockType block = actionList[2];
                 if (block == BlockType.NONE)
                 {
-                    inventory.addBlock(PickupBlock(), 2);
+                    setBlock(PickupBlock(), 2);
                 }
                 else
                 {
-                    doActionBlock(block);
+                    moveDirection = doActionBlock(block);
                 }
             }
 
             if (isAction4)
             {
-                BlockType block = inventory.at(3);
+                BlockType block = actionList[3];
                 if (block == BlockType.NONE)
                 {
-                    inventory.addBlock(PickupBlock(), 3);
+                    setBlock(PickupBlock(), 3);
                 }
                 else
                 {
-                    doActionBlock(block);
+                    moveDirection = doActionBlock(block);
                 }
             }
         }
-    }
 
-
-    public void damaged()
-    {
-        BlockType lostBlock = inventory.loseBlock();
-        ThrowBlock(lostBlock);
-    }
-
-
-    private void FixedUpdate()
-    {
-        Vector3 offset = new(0,1,0);
-
-        if (Physics.Raycast(transform.position + offset, transform.TransformDirection(Vector3.forward), out hit, 50, LayerMask.GetMask("Block")))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-            closeBlock = hit.collider.gameObject.GetComponent<BlockBehaviour>();
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.green);
-        }
-    }
-
-    public void doActionBlock(BlockType type)
-    {
-        float posX = transform.position.x;
-        float posY = transform.position.y;
-        float posZ = transform.position.z;
-
-        Vector3 moveDirection = Vector3.zero;
-        bool isGrounded = controller.isGrounded;
-
-        if (isGrounded)
-        {
-            velocity.y = 0f;
-        }
-
-        switch (type) {
-            case BlockType.UP:
-                break;
-            case BlockType.LEFT:
-                break;
-            case BlockType.DOWN:
-                break;
-            case BlockType.RIGHT:
-                break;
-            case BlockType.JUMP:
-                if (isGrounded && blockParameters.GetJump() && Input.GetKeyDown(keyAction[playerIndex]))
-                {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-                }
-
-            case BlockType.CLIMB:
-                break;
-        }
-
-        Vector3 transformVec = new Vector3(posX, posY, posZ);
+        //print(velocity);
 
         velocity.y += gravity * Time.deltaTime;
+
         controller.Move(velocity * Time.deltaTime);
 
         controller.Move(moveSpeed * Time.deltaTime * moveDirection);
 
-        if (moveDirection != Vector3.zero) {
+
+
+        if (moveDirection != Vector3.zero)
+        {
             animator.SetBool("isMoving", true);
-        } else
+        }
+        else
         {
             animator.SetBool("isMoving", false);
         }
-
-        transform.position = transformVec;
 
         if (moveDirection != Vector3.zero)
         {
@@ -234,45 +174,124 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public BlockType PickupBlock()
+
+    public void damaged()
     {
-        BlockType blockType = closeBlock.blockType;
-        Destroy(closeBlock);
-        return blockType;
+        BlockType lostBlock = loseBlock();
+        ThrowBlock(lostBlock);
     }
 
-    public void ThrowBlock(BlockType blockType)
-    {
-        GameObject selectedBlockPrefab = null;
 
-        // Assuming blockPrefabs is an array or list of GameObjects that includes a BlockBehaviour component
-        foreach (GameObject blockPrefab in blockPrefabs)
+    private void FixedUpdate()
+    {
+        float maxDistance = 1.75f; // Set your maximum distance here
+        closeBlock = null; // Reset the closeBlock
+
+        // Find all blocks in the scene. Adjust the tag to match your setup.
+        GameObject[] allBlocks = GameObject.FindGameObjectsWithTag("Block");
+        float closestDistance = maxDistance; // Initialize with the max distance
+        float distance;
+
+        foreach (GameObject block in allBlocks)
         {
-            BlockBehaviour blockBehaviour = blockPrefab.GetComponent<BlockBehaviour>();
-            if (blockBehaviour != null && blockType == blockBehaviour.blockType)
+            distance = Vector3.Distance(transform.position, block.transform.position);
+
+            // Check if this block is the closest and within the max distance
+            if (distance < closestDistance)
             {
-                selectedBlockPrefab = blockPrefab;
-                break;
+                closestDistance = distance;
+                closeBlock = block.GetComponent<BlockBehaviour>();
             }
         }
 
-        // Check if a matching block prefab was found
-        if (selectedBlockPrefab != null)
+        // If closeBlock is still null, no blocks were found within the max distance
+        if (closeBlock == null)
         {
-            // Instantiate the block prefab at the player's position + some offset
-            GameObject thrownBlock = Instantiate(selectedBlockPrefab, transform.position + transform.forward, Quaternion.identity);
-
-            // Add a Rigidbody component to the thrown block if it doesn't already have one
-            Rigidbody rb = thrownBlock.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                // Apply force to the block in the direction the player is facing
-                rb.AddForce(transform.forward, ForceMode.Impulse);
-            }
+            Debug.Log("No blocks within the specified distance.");
         }
         else
         {
-            Debug.LogWarning("No matching block prefab found for block type: " + blockType);
+            Debug.Log("Closest block found at distance: " + closestDistance);
         }
+
+
+
+    }
+
+    public Vector3 doActionBlock(BlockType type)
+    {
+
+        Vector3 moveDirection = Vector3.zero;
+
+        switch (type) {
+            case BlockType.UP:
+                moveDirection = Vector3.forward;
+                break;
+            case BlockType.LEFT:
+                moveDirection = Vector3.left;
+                break;
+            case BlockType.DOWN:
+                moveDirection = Vector3.back;
+                break;
+            case BlockType.RIGHT:
+                moveDirection = Vector3.right;
+                break;
+            case BlockType.JUMP:
+                //gravity and jumping
+                if (isGrounded)
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
+                    StartCoroutine(JumpWait());
+                }
+                break;
+
+            case BlockType.CLIMB:
+                break;
+        }
+
+        return moveDirection;
+    }
+
+    public BlockType PickupBlock()
+    {
+        if (closeBlock != null) {
+            BlockType blockType = closeBlock.blockType;
+            Destroy(closeBlock.gameObject);
+            return blockType;
+        }
+        return BlockType.NONE; 
+    }
+
+    public void ThrowBlock(BlockType _blockType)
+    {
+        Vector3 height_offset = new Vector3(0, 10, 0);
+
+        Vector3 spawn = transform.position + height_offset;
+
+        GameObject prefab = Resources.Load("jumpblock") as GameObject;
+
+        Instantiate(prefab, spawn, Quaternion.identity);
+
+      
+    }
+
+    public IEnumerator JumpWait()
+    {
+        isGrounded = false;
+        yield return new WaitForSeconds(1.5f);
+        isGrounded = true;
+    }
+
+    public void setBlock(BlockType block, int id)
+    {
+        actionList[id] = block;
+    }
+
+    public BlockType loseBlock()
+    {
+        int id = Random.Range(0, actionList.Count);
+        BlockType block = actionList[Random.Range(0, actionList.Count)];
+        actionList[id] = BlockType.NONE;
+        return block;
     }
 }
