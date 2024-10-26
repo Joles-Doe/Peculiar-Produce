@@ -220,6 +220,9 @@ public class PlayerStuffDJ : MonoBehaviour
     }
 
     
-   
+   public bool GetJump()
+    {
+        return jump;
+    }
 
 }
