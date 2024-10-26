@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,15 +22,15 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool moveZ;
 
-    bool moveUp;
-    bool moveLeft;
-    bool moveDown;
-    bool moveRight;
 
-    [HideInInspector]
+    public Vector3 velocity;
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
+    public float jumpHeight = 2f;
+    public float gravity = -2f;
+    public bool isGrounded;
 
+    public PlayerStuffDJ blockParameters;
     
     public List<KeyCode> keyUp = new List<KeyCode> { KeyCode.W, KeyCode.UpArrow };
     public List<KeyCode> keyLeft = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
@@ -40,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     int playerIndex;
 
     public Animator animator;
+    public CharacterController controller;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +52,9 @@ public class PlayerMovement : MonoBehaviour
         moveY = true;
         moveZ = true;
 
-        moveUp = true;
-        moveLeft = true;
-        moveDown = true;
-        moveRight = true;
 
-        posX = transform.position.x;
-        posY = transform.position.y;
+       
+      
         
         //Sets the key index dependent on if player is player 1
         if (isPlayerOne == true)
@@ -80,39 +79,68 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = Vector3.zero;
 
+
+
+        bool isGrounded = controller.isGrounded;
+
+        if (isGrounded )
+        {
+            velocity.y = 0f;
+        }
+
+
+
         // Movement listeners
         if (moveX)
         {
             if (Input.GetKey(keyLeft[playerIndex]))
             {
-                posX -= moveSpeed * Time.deltaTime;
+                
                 moveDirection += Vector3.left; // Move left
+
+
+               
             }
             if (Input.GetKey(keyRight[playerIndex]))
             {
-                posX += moveSpeed * Time.deltaTime;
+               
                 moveDirection += Vector3.right; // Move right
             }
+
+           
         }
 
         if (moveZ)
         {
             if (Input.GetKey(keyUp[playerIndex]))
             {
-                posZ += moveSpeed * Time.deltaTime;
+               
                 moveDirection += Vector3.forward; // Move forward
             }
             if (Input.GetKey(keyDown[playerIndex]))
             {
-                posZ -= moveSpeed * Time.deltaTime;
+               
                 moveDirection += Vector3.back; // Move backward
             }
         }
+        controller.Move(moveSpeed * Time.deltaTime * moveDirection);
+
+        //gravity and jumping
+        if (isGrounded && blockParameters.GetJump()) 
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+
 
         // Update position
         Vector3 transformVec = new Vector3(posX, posY, posZ);
 
-        if (transformVec - transform.position != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
             animator.SetBool("isMoving", true);
         }
@@ -135,23 +163,5 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    public void LockUpMovement(bool _lock)
-    {
-        moveUp = _lock;
-    }
 
-    public void LockLeftMovement(bool _lock)
-    {
-        moveLeft = _lock;
-    }
-
-    public void LockDownMovement(bool _lock)
-    {
-        moveDown = _lock;
-    }
-
-    public void LockRightMovement(bool _lock)
-    {
-        moveRight = _lock;
-    }
 }

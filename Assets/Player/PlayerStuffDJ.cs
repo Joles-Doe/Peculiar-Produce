@@ -35,7 +35,6 @@ public class PlayerStuffDJ : MonoBehaviour
 
     Vector3 blockOffset;
 
-    public PlayerMovement playerMovement;
 
     //Give the player a gameobject that follows their hand
     //public transform playerHand;
@@ -221,6 +220,9 @@ public class PlayerStuffDJ : MonoBehaviour
     }
 
     
-   
+   public bool GetJump()
+    {
+        return jump;
+    }
 
 }
