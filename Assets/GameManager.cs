@@ -15,4 +15,10 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
 }
