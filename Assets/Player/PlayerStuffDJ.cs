@@ -31,14 +31,11 @@ public class PlayerStuffDJ : MonoBehaviour
     RaycastHit hit;
     public BlockBehaviour targetedBlock;
 
-
-    public Rigidbody rb;
-    public float horizontalMovement;
-    public float verticalMovement;
-    public float speed = 10;
     public bool isGrounded = true;
 
     Vector3 blockOffset;
+
+    public PlayerMovement playerMovement;
 
     //Give the player a gameobject that follows their hand
     //public transform playerHand;
@@ -48,7 +45,7 @@ public class PlayerStuffDJ : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
         blockOffset = new Vector3(0, 1, 0);
 
 
@@ -59,79 +56,79 @@ public class PlayerStuffDJ : MonoBehaviour
     {
 
 
-        foreach(BlockBehaviour block in blocks) 
-        {
+        //foreach(BlockBehaviour block in blocks) 
+        //{
 
-            if(block != null)
-            {
-                if(block.blockType == BlockType.FORWARD)
-                {
-                    forward = true;
-                }
-                else
-                {
-                    forward = false;
-                }
+        //    if(block != null)
+        //    {
+        //        if(block.blockType == BlockType.FORWARD)
+        //        {
+        //            forward = true;
+        //        }
+        //        else
+        //        {
+        //            forward = false;
+        //        }
 
-                if (block.blockType == BlockType.BACK)
-                {
-                    back = true;
-                }
-                else
-                {
-                    back = false;
-                }
+        //        if (block.blockType == BlockType.BACK)
+        //        {
+        //            back = true;
+        //        }
+        //        else
+        //        {
+        //            back = false;
+        //        }
 
-                if (block.blockType == BlockType.LEFT)
-                {
-                    left = true;
-                }
-                else
-                {
-                    left = false;
-                }
+        //        if (block.blockType == BlockType.LEFT)
+        //        {
+        //            left = true;
+        //        }
+        //        else
+        //        {
+        //            left = false;
+        //        }
 
-                if (block.blockType == BlockType.RIGHT)
-                {
-                    right = true;
-                }
-                else
-                {
-                    right = false;
-                }
+        //        if (block.blockType == BlockType.RIGHT)
+        //        {
+        //            right = true;
+        //        }
+        //        else
+        //        {
+        //            right = false;
+        //        }
 
-                if (block.blockType == BlockType.JUMP)
-                {
-                    jump = true;
-                }
-                else
-                {
-                    jump = false;
-                }
+        //        if (block.blockType == BlockType.JUMP)
+        //        {
+        //            jump = true;
+        //        }
+        //        else
+        //        {
+        //            jump = false;
+        //        }
 
-                if (block.blockType == BlockType.THROW)
-                {
-                    chuck = true;
-                }
-                else
-                {
-                    chuck = false;
-                }
+        //        if (block.blockType == BlockType.THROW)
+        //        {
+        //            chuck = true;
+        //        }
+        //        else
+        //        {
+        //            chuck = false;
+        //        }
 
-                if (block.blockType == BlockType.STRENGTH)
-                {
-                    strength = true;
-                }
-                else
-                {
-                    strength = false;
-                }
-
-
-            }
+        //        if (block.blockType == BlockType.STRENGTH)
+        //        {
+        //            strength = true;
+        //        }
+        //        else
+        //        {
+        //            strength = false;
+        //        }
 
 
-        }
+        //    }
+
+
+        //}
 
         if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Hash))
         {
@@ -163,30 +160,29 @@ public class PlayerStuffDJ : MonoBehaviour
     {
        
        
-        if(forward && verticalMovement > 0)
-        {
-            rb.velocity = Vector3.forward * speed;
-        }
+        //if(forward && verticalMovement > 0)
+        //{
+        //    rb.velocity = Vector3.forward * speed;
+        //}
         
-        if(back && verticalMovement < 0)
-        {
-            rb.velocity = Vector3.back * speed; 
-        }
+        //if(back && verticalMovement < 0)
+        //{
+        //    rb.velocity = Vector3.back * speed; 
+        //}
 
-        if(right && horizontalMovement > 0)
-        {
-            rb.velocity = Vector3.right * speed;
-        }
+        //if(right && horizontalMovement > 0)
+        //{
+        //    rb.velocity = Vector3.right * speed;
+        //}
 
-        if(left && verticalMovement < 0)
-        {
-            rb.velocity = Vector3.left * speed;
-        }
+        //if(left && verticalMovement < 0)
+        //{
+        //    rb.velocity = Vector3.left * speed;
+        //}
 
         if(jump && isGrounded && Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-            //change this to stop it from flying
-            rb.velocity = Vector3.up * speed;
+          
 
 
             isGrounded = false;
