@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     bool moveDown;
     bool moveRight;
 
-    [HideInInspector]
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
 
