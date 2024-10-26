@@ -26,6 +26,8 @@ public class PlayerControl : MonoBehaviour
 
     public bool isPlayerOne = false;
 
+    public bool isClimbing = true;
+
     public List<GameObject> blockPrefabs;
     RaycastHit hit;
     BlockBehaviour closeBlock;
@@ -44,6 +46,7 @@ public class PlayerControl : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         isGrounded = true;
+        isClimbing = false;
 
         velocity = Vector3.zero;
 
@@ -59,6 +62,15 @@ public class PlayerControl : MonoBehaviour
         bool isAction5 = isPlayerOne ? Input.GetKey(KeyCode.LeftShift) : Input.GetKey(KeyCode.RightShift);
 
         Vector3 moveDirection = Vector3.zero;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f, LayerMask.GetMask("Climb")))
+        {
+            isClimbing = true;
+        } else
+        {
+            isClimbing = false;
+        }
 
         // If wanting to throw the block
         if (isAction5)
@@ -152,8 +164,10 @@ public class PlayerControl : MonoBehaviour
         moveDirection.Normalize();
 
         //print(velocity);
-
-        velocity.y += gravity * Time.deltaTime;
+        if (!isClimbing)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -211,11 +225,11 @@ public class PlayerControl : MonoBehaviour
         // If closeBlock is still null, no blocks were found within the max distance
         if (closeBlock == null)
         {
-            Debug.Log("No blocks within the specified distance.");
+            //Debug.Log("No blocks within the specified distance.");
         }
         else
         {
-            Debug.Log("Closest block found at distance: " + closestDistance);
+           // Debug.Log("Closest block found at distance: " + closestDistance);
         }
 
 
@@ -250,8 +264,7 @@ public class PlayerControl : MonoBehaviour
                 break;
 
             case BlockType.CLIMB:
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+                if (isClimbing)
                 {
                     velocity.y += climbSpeed * Time.deltaTime;
                 }
