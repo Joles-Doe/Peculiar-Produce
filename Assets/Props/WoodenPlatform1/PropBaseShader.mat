@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1820748568224173144
+--- !u!114 &-463130758559888596
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Palm
-  m_Shader: {fileID: -6465566751694194690, guid: 195730d0b20d9054a926a44d1f4f941d, type: 3}
-  m_Parent: {fileID: 2100000, guid: 816b600adad337c4db97aea004555f43, type: 2}
+  m_Name: PropBaseShader
+  m_Shader: {fileID: -6465566751694194690, guid: dba779bcc97f9944eb989bff43df19e2, type: 3}
+  m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -37,11 +37,28 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Layer_6CF42A07:
-        m_Texture: {fileID: 2800000, guid: 262cf4288f762234c8b8caca1d10e5bc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0378ede6d5c198f459f191a559c6e733, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Layer_DDC1CF42:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors: []
   m_BuildTextureStacks: []

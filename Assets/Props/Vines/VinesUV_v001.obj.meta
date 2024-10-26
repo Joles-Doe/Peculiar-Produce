@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: group2_pCylinder10Mat
-    second: {fileID: 2100000, guid: 01b06df821b195044b015d72b23a8481, type: 2}
+    second: {fileID: 2100000, guid: 58c441235fcbce34d9a8a52df42ec07c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

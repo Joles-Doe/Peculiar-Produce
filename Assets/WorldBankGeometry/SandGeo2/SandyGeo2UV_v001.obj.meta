@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: group2_pSphere2Mat
-    second: {fileID: 2100000, guid: 36c0cd9dba2935743be8e8671b6039f3, type: 2}
+    second: {fileID: 2100000, guid: b8e27fc6e3f9bb84f841fd4d437f5fab, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
