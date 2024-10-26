@@ -9,10 +9,11 @@ public class Checkpoints : MonoBehaviour
         if (_player.CompareTag("Player") == true)
         {
             Vector3 checkpoint = _newCheckpoint.position;
-            checkpoint.y += 25;
+            checkpoint.y += 5;
 
             if (_player.GetComponent<CheckpointHolder>().GetRespawnLocation() != checkpoint)
             {
+                print("New Checkpoint!");
                 _player.GetComponent<CheckpointHolder>().ChangeRespawnLocation(checkpoint);
             }
         }

@@ -6,7 +6,7 @@ public class KillBoxCollider : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") == true)
+        if (other.transform.root.CompareTag("Player") == true)
         {
             other.transform.root.GetComponent<PlayerDeath>().Respawn();
         }

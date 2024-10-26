@@ -908,6 +908,11 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!4 &149105313 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5970069518445794328, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
+  m_PrefabInstance: {fileID: 1731370913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &151208625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2252,7 +2257,7 @@ CharacterController:
   m_Radius: 3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.15
+  m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &315483792
@@ -2272,7 +2277,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 5
   jumpHeight: 5
-  gravity: -20
+  gravity: -5
   isGrounded: 1
   animator: {fileID: 315483793}
   controller: {fileID: 315483791}
@@ -2590,7 +2595,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 5
   jumpHeight: 5
-  gravity: -20
+  gravity: -5
   isGrounded: 1
   animator: {fileID: 351776754}
   controller: {fileID: 351776752}
@@ -2612,10 +2617,10 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2627,7 +2632,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!95 &351776754 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
@@ -4751,6 +4756,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &547458356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5651751901618623305, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
+  m_PrefabInstance: {fileID: 1903105313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &559645755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: edcc3627e16e88c4a8d2c9378d0e9903, type: 3}
@@ -5471,7 +5481,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 1324bc9c9fdcf204a87b707d726a73c5, type: 2}
+      objectReference: {fileID: 9100000, guid: 7bc73af05db367d4a9252792a922562b, type: 2}
     - target: {fileID: 5866666021909216657, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       propertyPath: m_CullingMode
       value: 0
@@ -5874,14 +5884,14 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5944,7 +5954,7 @@ Transform:
   m_GameObject: {fileID: 694228579}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.047686, y: -4, z: -3.3160477}
+  m_LocalPosition: {x: -19.047686, y: -14.6, z: -3.3160477}
   m_LocalScale: {x: 147.58, y: 21.784283, z: 147.58}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6114,7 +6124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.507
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7991,7 +8001,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.013312476, y: 0.012698121, z: -0.02398015}
+  m_ConnectedAnchor: {x: -0.0011780597, y: -0.0011236885, z: 0.0021221102}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -9280,7 +9290,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.017487507, y: 0.016680531, z: 0.018151015}
+  m_ConnectedAnchor: {x: 0.0015475389, y: -0.0014761393, z: -0.0016062229}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -10189,7 +10199,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.003330008, y: 0.024202421, z: -0.010955795}
+  m_ConnectedAnchor: {x: 0.00076172163, y: -0.005536146, z: 0.0025060521}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -11551,7 +11561,7 @@ GameObject:
   - component: {fileID: 1394704910}
   m_Layer: 0
   m_Name: Mikeill
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11597,6 +11607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86397d3fe7c098a498aa999672afeb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 315483791}
+  playerRagdoll: {fileID: 149105313}
   checkpoint: {fileID: 1394704910}
 --- !u!1 &1419168288 stripped
 GameObject:
@@ -11679,7 +11691,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0031185092, y: 0.022665318, z: 0.014134875}
+  m_ConnectedAnchor: {x: -0.0006964488, y: -0.005061781, z: -0.0031567295}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -12127,7 +12139,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.003288184, y: 0.024045061, z: 0.014993645}
+  m_ConnectedAnchor: {x: -0.0005039569, y: -0.003685165, z: -0.0022979632}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -12989,7 +13001,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.028516822, y: 5.9604643e-10, z: 0.0000000037252903}
+  m_ConnectedAnchor: {x: 0.0043821945, y: -0.0000000023841857, z: -4.656613e-10}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -13037,7 +13049,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 15
+    positionSpring: 1500
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -13646,7 +13658,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0035267242, y: 0.025789395, z: -0.011672862}
+  m_ConnectedAnchor: {x: 0.0005405186, y: -0.0039525246, z: 0.0017889789}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -13879,10 +13891,10 @@ PrefabInstance:
       addedObject: {fileID: 149105310}
     - targetCorrespondingSourceObject: {fileID: 897146649249812813, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 149105312}
+      addedObject: {fileID: 149105311}
     - targetCorrespondingSourceObject: {fileID: 897146649249812813, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 149105311}
+      addedObject: {fileID: 149105312}
     - targetCorrespondingSourceObject: {fileID: 5796635466846637411, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1871897798}
@@ -16221,7 +16233,7 @@ GameObject:
   - component: {fileID: 2069656778}
   m_Layer: 0
   m_Name: Shareon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16267,6 +16279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86397d3fe7c098a498aa999672afeb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 351776752}
+  playerRagdoll: {fileID: 547458356}
   checkpoint: {fileID: 2069656778}
 --- !u!1001 &2069982290
 PrefabInstance:
