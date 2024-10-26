@@ -16,6 +16,7 @@ public class Respawner : MonoBehaviour
 
     public void DestroyAndRespawn(GameObject _player)
     {
+        print(_player == player1);
         if (_player == player1)
         {
             spawnLocation = player1.GetComponent<CheckpointHolder>().GetRespawnLocation();
@@ -24,16 +25,17 @@ public class Respawner : MonoBehaviour
             player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
             player1.GetComponentInChildren<PlayerControl>().isPlayerOne = true;
 
-            cam.player1 = player1.transform;
+            cam.player1 = player1.transform.GetChild(0).transform;
         }
-        else
+        
+        if (_player == player2)
         {
             spawnLocation = player2.GetComponent<CheckpointHolder>().GetRespawnLocation();
             Destroy(player2);
             player2 = Instantiate(player2Prefab, spawnLocation, Quaternion.identity);
             player2.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
 
-            cam.player2 = player2.transform;
-        }        
+            cam.player2 = player2.transform.GetChild(0).transform;
+        }
     }
 }

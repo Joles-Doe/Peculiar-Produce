@@ -159,9 +159,10 @@ public class PlayerControl : MonoBehaviour
         //print(velocity);
         if (!isClimbing)
         {
-
             velocity.y += gravity * Time.deltaTime;
         }
+
+        Mathf.Clamp(velocity.y, -5f, Mathf.Infinity);
 
         controller.Move(velocity * Time.deltaTime);
 
