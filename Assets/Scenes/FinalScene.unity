@@ -2278,6 +2278,7 @@ MonoBehaviour:
   rotationSpeed: 5
   jumpHeight: 5
   gravity: -5
+  climbSpeed: 5
   isGrounded: 1
   animator: {fileID: 315483793}
   controller: {fileID: 315483791}
