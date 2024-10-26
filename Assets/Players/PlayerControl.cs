@@ -6,19 +6,16 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-
-    [HideInInspector]
-    public bool isDead;
-
     [HideInInspector]
     public Vector3 velocity;
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10f;
     public float rotationSpeed = 5f;
-    public float jumpHeight = 0.3f;
-    public float gravity = -20f;
+    public float jumpHeight = 10f;
+    public float gravity = -25f;
     public float climbSpeed = 5.0f;
-    public bool isGrounded;
+    public bool isGrounded = true;
+    public bool isClimbing = false;
 
     public Animator animator;
     public CharacterController controller;
@@ -26,31 +23,20 @@ public class PlayerControl : MonoBehaviour
 
     public bool isPlayerOne = false;
 
-    public bool isClimbing = true;
-
     public List<GameObject> blockPrefabs;
     RaycastHit hit;
     BlockBehaviour closeBlock;
 
-
     public List<BlockType> actionList;
-
-
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        isGrounded = true;
-        isClimbing = false;
 
         velocity = Vector3.zero;
-
-}
+    }
 
     // Update is called once per frame
     void Update()
@@ -326,8 +312,6 @@ public class PlayerControl : MonoBehaviour
         GameObject prefab = Resources.Load(prefabname) as GameObject;
 
         Instantiate(prefab, spawn, Quaternion.identity);
-
-      
     }
 
     public IEnumerator JumpWait()
