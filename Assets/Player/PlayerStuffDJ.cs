@@ -6,10 +6,10 @@ public class PlayerStuffDJ : MonoBehaviour
 {
 
     //movement
-    public bool forward = false;
-    public bool back = false;
-    public bool right = false;
-    public bool left = false;
+    //public bool forward = false;
+    //public bool back = false;
+    //public bool right = false;
+    //public bool left = false;
     
     
     //abilities
@@ -56,81 +56,33 @@ public class PlayerStuffDJ : MonoBehaviour
     {
 
 
-        //foreach(BlockBehaviour block in blocks) 
-        //{
+        foreach (BlockBehaviour block in blocks)
+        {
 
-        //    if(block != null)
-        //    {
-        //        if(block.blockType == BlockType.FORWARD)
-        //        {
-        //            forward = true;
-        //        }
-        //        else
-        //        {
-        //            forward = false;
-        //        }
+            if (block.blockType == BlockType.JUMP)
+            {
+                jump = true;
+            }
+          
 
-        //        if (block.blockType == BlockType.BACK)
-        //        {
-        //            back = true;
-        //        }
-        //        else
-        //        {
-        //            back = false;
-        //        }
+            if (block.blockType == BlockType.THROW)
+            {
+                chuck = true;
+            }
+           
 
-        //        if (block.blockType == BlockType.LEFT)
-        //        {
-        //            left = true;
-        //        }
-        //        else
-        //        {
-        //            left = false;
-        //        }
-
-        //        if (block.blockType == BlockType.RIGHT)
-        //        {
-        //            right = true;
-        //        }
-        //        else
-        //        {
-        //            right = false;
-        //        }
-
-        //        if (block.blockType == BlockType.JUMP)
-        //        {
-        //            jump = true;
-        //        }
-        //        else
-        //        {
-        //            jump = false;
-        //        }
-
-        //        if (block.blockType == BlockType.THROW)
-        //        {
-        //            chuck = true;
-        //        }
-        //        else
-        //        {
-        //            chuck = false;
-        //        }
-
-        //        if (block.blockType == BlockType.STRENGTH)
-        //        {
-        //            strength = true;
-        //        }
-        //        else
-        //        {
-        //            strength = false;
-        //        }
+            if (block.blockType == BlockType.STRENGTH)
+            {
+                strength = true;
+            }
+          
 
 
-            
 
 
-        //}
+        }
 
-        if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Hash))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Hash))
         {
             //a block can be picked up, theres a visible block and there is space in the list
             if(pickup && targetedBlock != null && blocks.Count < 5)
@@ -150,7 +102,7 @@ public class PlayerStuffDJ : MonoBehaviour
 
         //keep player hand on the player's body
         //playerHand.position = Vector3.zero;
-        
+       
 
 
     }
@@ -160,40 +112,20 @@ public class PlayerStuffDJ : MonoBehaviour
     {
        
        
-        //if(forward && verticalMovement > 0)
-        //{
-        //    rb.velocity = Vector3.forward * speed;
-        //}
-        
-        //if(back && verticalMovement < 0)
-        //{
-        //    rb.velocity = Vector3.back * speed; 
-        //}
-
-        //if(right && horizontalMovement > 0)
-        //{
-        //    rb.velocity = Vector3.right * speed;
-        //}
-
-        //if(left && verticalMovement < 0)
-        //{
-        //    rb.velocity = Vector3.left * speed;
-        //}
+      
 
         if (jump && isGrounded && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
         {
           
-
-
             isGrounded = false;
-
 
         }
 
+        Vector3 offset = new(0,1,0);
 
         //raycast for block collision
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 20, LayerMask.GetMask("Block")))
+        if (Physics.Raycast(transform.position + offset, transform.TransformDirection(Vector3.forward), out hit, 50, LayerMask.GetMask("Block")))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
             Debug.Log("Looking at Block");
@@ -207,18 +139,25 @@ public class PlayerStuffDJ : MonoBehaviour
         }
         else
         {
+           
+           
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.green);
+           // Debug.Log("Did not Hit");
+            
             targetedBlock = null;
             pickup = false;
         }
 
 
+
+
         //stack picked up blocks onto character
-        /*for(int i = 0; i < blocks.Count - 1; i++)
+        for (int i = 0; i < blocks.Count - 1; i++)
         {
-            block.rb.Move(rb.position + blockOffset * (i + 1));
+            blocks[i].rb.Move(transform.position + blockOffset * (i + 1), Quaternion.identity);
         }
 
-        blocks[^1].rb.Move(playerHand.position);*/
+       // blocks[^1].rb.Move(playerHand.position);
 
 
 
@@ -231,6 +170,8 @@ public class PlayerStuffDJ : MonoBehaviour
 
         if (!_block.GetPicked())
         {
+            
+
             blocks.Add(_block);
             _block.SetPicked(true);
         }
@@ -244,6 +185,22 @@ public class PlayerStuffDJ : MonoBehaviour
             blocks[^1].SetCollided( false);
             blocks[^1].SetPicked(false);
 
+            if (blocks[^1].blockType == BlockType.JUMP)
+            {
+                jump = false;
+            }
+
+
+            if (blocks[^1].blockType == BlockType.THROW)
+            {
+                chuck = false;
+            }
+
+
+            if (blocks[^1].blockType == BlockType.STRENGTH)
+            {
+                strength = false;
+            }
             //remove from player abilities
             blocks.Remove(blocks[^1]);
 
@@ -252,12 +209,15 @@ public class PlayerStuffDJ : MonoBehaviour
 
     }
 
+ 
+
     private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
         }
+
     }
 
     

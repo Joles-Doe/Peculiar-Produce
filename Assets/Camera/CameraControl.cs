@@ -29,7 +29,7 @@ public class CameraControl : MonoBehaviour
         distance = Vector3.Distance(player1.position, player2.position);
         
 
-        print(distance);
+       // print(distance);
 
         //Calculate camera bounds
         float cHeight = Camera.main.orthographicSize * 2;
@@ -54,7 +54,7 @@ public class CameraControl : MonoBehaviour
             {
                 oldDistance = distance;
                 transform.Translate(Vector3.forward * (distance - oldDistance), Space.Self);
-                print(Vector3.forward * (distance - oldDistance));
+                //print(Vector3.forward * (distance - oldDistance));
             }
         }
     }
