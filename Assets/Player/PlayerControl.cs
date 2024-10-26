@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public float rotationSpeed = 5f;
     public float jumpHeight = 0.3f;
     public float gravity = -20f;
+    public float climbSpeed = 5.0f;
     public bool isGrounded;
 
     public Animator animator;
@@ -249,6 +250,11 @@ public class PlayerControl : MonoBehaviour
                 break;
 
             case BlockType.CLIMB:
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+                {
+                    velocity.y += climbSpeed * Time.deltaTime;
+                }
                 break;
         }
 
