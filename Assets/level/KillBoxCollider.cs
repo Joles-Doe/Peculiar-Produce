@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class KillBoxCollider : MonoBehaviour
 {
+    public Respawner respawner;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.root.CompareTag("Player") == true)
         {
-            other.transform.root.GetComponent<PlayerDeath>().Respawn();
+            respawner.DestroyAndRespawn(other.transform.root.gameObject);
         }
     }
 }

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlockBaseShader
+  m_Name: DefaultShader
   m_Shader: {fileID: -6465566751694194690, guid: dba779bcc97f9944eb989bff43df19e2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

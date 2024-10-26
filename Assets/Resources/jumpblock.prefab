@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4d352b693ad3e904fb94ea65cf14937d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aa2f61ffd75e665459f73d5a96e18c39, type: 2}
+      objectReference: {fileID: 2100000, guid: d5e215ca7e33a1d4e8844c9d6fb9a93d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4d352b693ad3e904fb94ea65cf14937d, type: 3}
       propertyPath: m_Name
       value: jumpblock

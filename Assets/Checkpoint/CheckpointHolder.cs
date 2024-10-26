@@ -6,13 +6,13 @@ public class CheckpointHolder : MonoBehaviour
 {
     Vector3 respawnLocation;
 
-    public void ChangeRespawnLocation(Vector3 _newRespawn)
-    {
-        respawnLocation = _newRespawn;
-    }
-
     public Vector3 GetRespawnLocation()
     {
         return respawnLocation;
+    }
+
+    public void SetRespawnLocation(Vector3 _newRespawn)
+    {
+        respawnLocation = _newRespawn;
     }
 }

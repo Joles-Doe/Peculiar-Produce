@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mike_ill_Shader
+  m_Name: RightBlockShader
   m_Shader: {fileID: -6465566751694194690, guid: dba779bcc97f9944eb989bff43df19e2, type: 3}
-  m_Parent: {fileID: 2100000, guid: 354fbd82d25d5d346a56265362d3e833, type: 2}
+  m_Parent: {fileID: 2100000, guid: 6919ee7f09b29d14ab8caa49bc3d1657, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,15 +24,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Layer_6CF42A07:
-        m_Texture: {fileID: 2800000, guid: b6326fb23af8fb04e9a40a3c23b3fe1d, type: 3}
+        m_Texture: {fileID: 2800000, guid: e77ed74b86db0b943bb5143aedba4977, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _QueueControl: 0
+    m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &699201646008114918
+--- !u!114 &8241698677767539925
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
