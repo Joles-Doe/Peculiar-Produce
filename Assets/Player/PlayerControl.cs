@@ -268,7 +268,32 @@ public class PlayerControl : MonoBehaviour
 
         Vector3 spawn = transform.position + height_offset;
 
-        GameObject prefab = Resources.Load("jumpblock") as GameObject;
+
+        string prefabname = "jumpblock";
+
+        switch (_blockType)
+        {
+            case BlockType.UP:
+                prefabname = "upblock";
+                break;
+            case BlockType.LEFT:
+                prefabname = "leftblock";
+                break;
+            case BlockType.DOWN:
+                prefabname = "downblock";
+                break;
+            case BlockType.RIGHT:
+                prefabname = "rightblock";
+                break;
+            case BlockType.JUMP:
+                prefabname = "jumpblock";
+                break;
+            case BlockType.CLIMB:
+                prefabname = "climbblock";
+                break;
+        }
+
+        GameObject prefab = Resources.Load(prefabname) as GameObject;
 
         Instantiate(prefab, spawn, Quaternion.identity);
 
