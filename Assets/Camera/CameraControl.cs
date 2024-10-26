@@ -8,54 +8,93 @@ public class CameraControl : MonoBehaviour
     //Variables - Drag and drop in editor
     public Transform player1;
     public Transform player2;
+
     //Variables - Adjust value in script
     [HideInInspector]
-    public bool canMove = true;
+    public float camOffsetZ = 9f;
+    float minZ = 0f;
+    List<float> zTargets = new List<float> { 0, 0 };
+
+    float minY = 0f;
+    float currentY = 0f;
+    List<float> yTargets = new List<float> { 0, 0 };
+
+    int targetIndex = 0;
+
+    bool lerpMove = false;
+    bool lerpInverse = false;
+    float ratio;
 
     float distance;
-    float oldDistance;
 
     private void Start()
     {
-        oldDistance = 15f;
+        currentY = transform.position.y;
+
+        //Set targets
+        zTargets[0] = camOffsetZ;
+        zTargets[1] = camOffsetZ + 5;
+
+        yTargets[0] = currentY;
+        yTargets[1] = currentY + 5;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        //Find distance between players
+        distance = Vector3.Distance(player1.position, player2.position);
+       // print(distance);
+
+        //If either player is nearing camera border
+        if (distance > 12)
+        {
+            //Check if camera should be zooming in
+            if (lerpInverse == false)
+            {
+                lerpInverse = true;
+                targetIndex = 1;
+
+                minZ = camOffsetZ;
+                minY = transform.position.y;
+
+                lerpMove = true;
+                ratio = 0;
+            }
+        }
+        else
+        {
+            //Check if camera should be zooming in
+            if (lerpInverse == true)
+            {
+                lerpInverse = false;
+                targetIndex = 0;
+
+                minZ = camOffsetZ;
+                minY = transform.position.y;
+
+                lerpMove = true;
+                ratio = 0;
+            }
+        }
+
+        if (lerpMove == true)
+        {
+            //Lerp Y and Z values
+            currentY = Mathf.Lerp(minY, yTargets[targetIndex], ratio);
+            camOffsetZ = Mathf.Lerp(minZ, zTargets[targetIndex], ratio);
+
+            ratio += Time.deltaTime;
+
+            if (currentY == yTargets[targetIndex] && camOffsetZ == zTargets[targetIndex])
+            {
+                lerpMove = false;
+            }
+        }
+
         //Calculate camera midpoint
         Vector3 midPoint = (player1.position + player2.position) / 2;
 
-        distance = Vector3.Distance(player1.position, player2.position);
-        
-
-       // print(distance);
-
-        //Calculate camera bounds
-        float cHeight = Camera.main.orthographicSize * 2;
-        float cWidth = cHeight * Camera.main.aspect;
-
-        //Calculate camera limits
-        Vector3 minLimit = new Vector3(midPoint.x - cWidth / 2, midPoint.y - cHeight / 2);
-        Vector3 maxLimit = new Vector3(midPoint.x + cWidth / 2, midPoint.y + cHeight / 2);
-
-        //Calculate new camera position
-        Vector3 targetPosition = new Vector3(midPoint.x, transform.position.y, midPoint.z - 9f);
-
-        ////Clamp camera position to keep players in view
-        //targetPosition.x = Mathf.Clamp(targetPosition.x, minLimit.x, maxLimit.x);
-        ////targetPosition.y = Mathf.Clamp(targetPosition.y, minLimit.y, maxLimit.y);
-
-        if (canMove == true)
-        {
-            transform.position = targetPosition;
-
-            if (distance > oldDistance)
-            {
-                oldDistance = distance;
-                transform.Translate(Vector3.forward * (distance - oldDistance), Space.Self);
-                //print(Vector3.forward * (distance - oldDistance));
-            }
-        }
+        transform.position = new Vector3(midPoint.x, currentY, midPoint.z - camOffsetZ);
     }
 }
