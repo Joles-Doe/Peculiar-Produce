@@ -44,7 +44,7 @@ public class CameraControl : MonoBehaviour
     {
         //Find distance between players
         distance = Vector3.Distance(player1.position, player2.position);
-       // print(distance);
+        print(distance);
 
         //If either player is nearing camera border
         if (distance > 12)
@@ -94,8 +94,6 @@ public class CameraControl : MonoBehaviour
 
         //Calculate camera midpoint
         Vector3 midPoint = (player1.position + player2.position) / 2;
-
         transform.position = new Vector3(midPoint.x, midPoint.y + currentY - 3, midPoint.z - camOffsetZ);
-
     }
 }
