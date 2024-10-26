@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum BlockType
-{
-    FORWARD,
-    BACK,
-    LEFT,
-    RIGHT,
-    JUMP,
-    THROW,
-    STRENGTH
-}
-
-
 public class BlockBehaviour : MonoBehaviour
 {
 
@@ -38,19 +26,9 @@ public class BlockBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-
-
-
 
 
     }
-
-  
-
-   
-
 
     public void SetCollided(bool _collided)
     {
