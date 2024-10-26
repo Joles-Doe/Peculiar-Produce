@@ -40,6 +40,8 @@ bool moveUp;
     int playerIndex;
 
     public Animator animator;
+    public CharacterController controller;
+    public Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +84,7 @@ posX = transform.position.x;
 
 
 
-        isGrounded = controller.isGrounded;
+        bool isGrounded = controller.isGrounded;
 
         if (isGrounded && velocity.y < 0)
         {
