@@ -12,11 +12,24 @@ public class CameraControl : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
 
+    float distance;
+    float oldDistance;
+
+    private void Start()
+    {
+        oldDistance = 15f;
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
         //Calculate camera midpoint
         Vector3 midPoint = (player1.position + player2.position) / 2;
+
+        distance = Vector3.Distance(player1.position, player2.position);
+        
+
+        print(distance);
 
         //Calculate camera bounds
         float cHeight = Camera.main.orthographicSize * 2;
@@ -27,15 +40,22 @@ public class CameraControl : MonoBehaviour
         Vector3 maxLimit = new Vector3(midPoint.x + cWidth / 2, midPoint.y + cHeight / 2);
 
         //Calculate new camera position
-        Vector3 targetPosition = new Vector3(midPoint.x, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(midPoint.x, transform.position.y, midPoint.z - 9f);
 
-        //Clamp camera position to keep players in view
-        targetPosition.x = Mathf.Clamp(targetPosition.x, minLimit.x, maxLimit.x);
-        //targetPosition.y = Mathf.Clamp(targetPosition.y, minLimit.y, maxLimit.y);
+        ////Clamp camera position to keep players in view
+        //targetPosition.x = Mathf.Clamp(targetPosition.x, minLimit.x, maxLimit.x);
+        ////targetPosition.y = Mathf.Clamp(targetPosition.y, minLimit.y, maxLimit.y);
 
         if (canMove == true)
         {
             transform.position = targetPosition;
+
+            if (distance > oldDistance)
+            {
+                oldDistance = distance;
+                transform.Translate(Vector3.forward * (distance - oldDistance), Space.Self);
+                print(Vector3.forward * (distance - oldDistance));
+            }
         }
     }
 }
