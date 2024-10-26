@@ -490,15 +490,15 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 6
+  m_Radius: 4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &86605510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,7 +1484,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000031432132, y: 0.010498126, z: -0.00000001071021}
+  m_ConnectedAnchor: {x: 0.0003564315, y: -0.0025905098, z: 0.0011726426}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2034,7 +2034,7 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 5
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -2581,134 +2581,6 @@ CapsuleCollider:
   m_Height: 0.003
   m_Direction: 1
   m_Center: {x: 0, y: 0.003, z: 0}
---- !u!1 &360628917
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 360628922}
-  - component: {fileID: 360628921}
-  - component: {fileID: 360628920}
-  - component: {fileID: 360628919}
-  - component: {fileID: 360628918}
-  m_Layer: 0
-  m_Name: Movement Limiter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &360628918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360628917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c699863e04fab3742805eb517da2315a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
-  gameCamera: {fileID: 963194232}
-  players:
-  - {fileID: 0}
-  - {fileID: 86605506}
-  boundaries:
-  - {fileID: 216404559}
-  - {fileID: 597084085}
-  - {fileID: 1437650991}
-  - {fileID: 1952828019}
---- !u!65 &360628919
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360628917}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &360628920
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360628917}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &360628921
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360628917}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &360628922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360628917}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.97076, y: -0.03, z: -21.86}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &363403326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 709ba216af95d5f49829143981bbbe94, type: 3}
@@ -3755,7 +3627,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000015254956, y: 0.011368908, z: 0.000000010380401}
+  m_ConnectedAnchor: {x: -0.000000015253137, y: 0.01136891, z: 0.000000012243047}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4728,7 +4600,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000000372529, y: -0.0000000023841857, z: 4.440892e-16}
+  m_ConnectedAnchor: {x: 0.002865806, y: -0.0000000023841857, z: -2.3283064e-10}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4909,7 +4781,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000765588, y: 0.0099375, z: -0.000000018160792}
+  m_ConnectedAnchor: {x: -0.0007655913, y: 0.009937503, z: -0.000000014901163}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5173,7 +5045,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009247577, y: 0.00083356857, z: -0.0047111493}
+  m_ConnectedAnchor: {x: -0.0012622487, y: -0.0012039925, z: 0.0022737624}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5425,7 +5297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2046108646}
   player2: {fileID: 86605507}
-  canMove: 1
+  camOffsetZ: 9
 --- !u!114 &963194233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5510,7 +5382,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000054820903, y: 0.00014098643, z: -0.0030540482}
+  m_ConnectedAnchor: {x: -0.00033033508, y: -0.002415549, z: -0.0015062748}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6757,13 +6629,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 10
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 10
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -6995,7 +6867,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000023283067, y: 0.010498147, z: -0.0000000132713485}
+  m_ConnectedAnchor: {x: -0.00033231732, y: -0.0024152815, z: -0.0015062784}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7294,7 +7166,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000054821834, y: 0.00014098643, z: 0.0030540482}
+  m_ConnectedAnchor: {x: 0.00035430165, y: -0.0025908041, z: 0.0011726347}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -8585,7 +8457,7 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 10
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -8597,7 +8469,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 0
+    positionSpring: 10
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -9979,8 +9851,8 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 5
+    positionDamper: 1
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_YDrive:
@@ -10751,7 +10623,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.011541794, y: 0.0013613772, z: -9.313226e-10}
+  m_ConnectedAnchor: {x: 0.0115418015, y: 0.0013613796, z: -9.313226e-10}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -11020,7 +10892,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000039435695, y: 0.008309217, z: 0.000000010929046}
+  m_ConnectedAnchor: {x: -0.000000008716598, y: 0.008309224, z: 0.000000016516978}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -11377,7 +11249,7 @@ PrefabInstance:
       addedObject: {fileID: 2046108644}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2046108650}
+      addedObject: {fileID: 2046108649}
     - targetCorrespondingSourceObject: {fileID: 897146649249812813, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1264051847}
@@ -11405,9 +11277,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4054898489217686124, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1389668848}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2046108649}
   m_SourcePrefab: {fileID: 100100000, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
 --- !u!1 &2046108643 stripped
 GameObject:
@@ -11438,15 +11307,12 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: -9.81
   isGrounded: 0
-  blockParameters: {fileID: 2046108648}
+  blockParameters: {fileID: 0}
   keyUp: 7700000011010000
   keyLeft: 6100000014010000
   keyDown: 7300000012010000
   keyRight: 6400000013010000
   isPlayerOne: 1
-  animator: {fileID: 2046108649}
-  controller: {fileID: 2046108650}
-  velocity: {x: 0, y: 0, z: 0}
   animator: {fileID: 2046108650}
   controller: {fileID: 2046108649}
 --- !u!4 &2046108646 stripped
@@ -11454,37 +11320,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
   m_PrefabInstance: {fileID: 2046108642}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2046108649 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
-  m_PrefabInstance: {fileID: 2046108642}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &2046108650
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046108643}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &2046108649
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11498,19 +11333,19 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 6
+  m_Radius: 4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.15
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!95 &2046108650 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7e608b12b36f1d9409a2e008cd1afcac, type: 3}
@@ -11827,7 +11662,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009247579, y: 0.00083356857, z: 0.0047111474}
+  m_ConnectedAnchor: {x: 0.0016581292, y: -0.001581626, z: -0.0017210089}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -12348,9 +12183,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7bc73af05db367d4a9252792a922562b, type: 2}
+      objectReference: {fileID: 9100000, guid: 1324bc9c9fdcf204a87b707d726a73c5, type: 2}
     - target: {fileID: 5866666021909216657, guid: b6c5415a8dd67a84aaf69b9db5e5ea5c, type: 3}
       propertyPath: m_UpdateMode
       value: 0
@@ -12577,7 +12416,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
-  - {fileID: 360628922}
   - {fileID: 705507995}
   - {fileID: 1644436931}
   - {fileID: 709223253}
