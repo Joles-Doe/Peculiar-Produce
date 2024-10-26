@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: initialShadingGroup.001
-    second: {fileID: 2100000, guid: cfd952e4cc1df604896b03bef4289169, type: 2}
+    second: {fileID: 2100000, guid: 4397b0d84f7d06549a2bf17a0755c6fe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
