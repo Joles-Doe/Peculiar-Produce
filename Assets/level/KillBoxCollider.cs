@@ -8,8 +8,7 @@ public class KillBoxCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Collide");
-        if (other.transform.root.CompareTag("Player") == true)
+        if (other.transform.root.CompareTag("Player"))
         {
             respawner.DestroyAndRespawn(other.transform.root.gameObject);
         }

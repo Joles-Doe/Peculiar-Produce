@@ -20,18 +20,19 @@ public class Respawner : MonoBehaviour
         if (_player == player1)
         {
             spawnLocation = player1.GetComponent<CheckpointHolder>().GetRespawnLocation();
-            //Destroy(player1);
-            //player1 = Instantiate(player1Prefab, spawnLocation, Quaternion.identity);
-            //player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
-            //player1.GetComponentInChildren<PlayerControl>().isPlayerOne = true;
+            Destroy(player1);
+            player1 = Instantiate(player1Prefab, spawnLocation, Quaternion.identity);
+            player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
+            player1.GetComponentInChildren<PlayerControl>().isPlayerOne = true;
 
-            //cam.player1 = player1.transform.GetChild(0).transform;
-
-            print(spawnLocation);
+            player1.transform.GetChild(0).tag = "PlayerCharacters";
 
 
-            player1.transform.GetChild(0).transform.position = spawnLocation;        
-            player1.transform.GetChild(1).transform.position = spawnLocation;
+
+            //print(spawnLocation);
+            //player1.transform.position = spawnLocation;
+            //player1.transform.GetChild(0).transform.position = Vector3.zero;        
+            //player1.transform.GetChild(1).transform.position = Vector3.zero;
         }
         
         if (_player == player2)
@@ -41,7 +42,9 @@ public class Respawner : MonoBehaviour
             player2 = Instantiate(player2Prefab, spawnLocation, Quaternion.identity);
             player2.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
 
-            cam.player2 = player2.transform.GetChild(0).transform;
+
+            player2.transform.GetChild(0).tag = "PlayerCharacters";
+
         }
     }
 }

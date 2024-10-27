@@ -1,113 +1,57 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    //Variables - Drag and drop in editor
-    public Transform player1;
-    public Transform player2;
+    // Variables - Adjust value in script
+    public float camOffsetY = 8f; // Fixed vertical offset
+    public float baseCamOffsetZ = 9f; // Base distance behind the players
+    public float distanceMultiplier = 2f; // Multiplier for dynamic distance based on player spread
+    public float zoomOutThreshold = 5f; // Minimum distance between players to trigger zoom out
+    public float smoothSpeed = 0.5f; // Smooth transition speed for camera movement
 
-    //Variables - Adjust value in script
-    [HideInInspector]
-    public float camOffsetZ = 9f;
-    float minZ = 0f;
-    List<float> zTargets = new List<float> { 0, 0 };
-
-    float minY = 0f;
-    float currentY = 0f;
-    List<float> yTargets = new List<float> { 0, 0 };
-
-    int targetIndex = 0;
-
-    Vector3 midPoint;
-
-    bool lerpMove = false;
-    bool lerpInverse = false;
-    float ratio;
-
-    bool targetNull = false;
-    float distance;
-
-    private void Start()
+    private void LateUpdate()
     {
-        currentY = transform.position.y;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerCharacters");
 
-        //Set targets
-        zTargets[0] = camOffsetZ;
-        zTargets[1] = camOffsetZ + 5;
+        if (players.Length == 0) return; // Exit if there are no players
 
-        yTargets[0] = currentY;
-        yTargets[1] = currentY + 5;
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        if (player1 == null || player2 == null)
+        // Calculate the average position of all players
+        Vector3 averagePosition = Vector3.zero;
+        foreach (GameObject player in players)
         {
-            if (player1 == null)
+            averagePosition += player.transform.position;
+        }
+        averagePosition /= players.Length;
+
+        // Calculate the maximum distance between players
+        float maxDistance = 0f;
+        for (int i = 0; i < players.Length; i++)
+        {
+            for (int j = i + 1; j < players.Length; j++)
             {
-                midPoint = player2.position;
-            }
-            else if (player2 == null)
-            {
-                midPoint = player1.position;
+                float distance = Vector3.Distance(players[i].transform.position, players[j].transform.position);
+                if (distance > maxDistance)
+                {
+                    maxDistance = distance;
+                }
             }
         }
-        else
+
+        // Adjust camOffsetZ based on the maximum distance between players if they exceed the threshold
+        float adjustedCamOffsetZ = baseCamOffsetZ;
+        if (maxDistance > zoomOutThreshold)
         {
-            distance = Vector3.Distance(player1.position, player2.position);
-
-            if (distance > 12)
-            {
-                //Check if camera should be zooming in
-                if (lerpInverse == false)
-                {
-                    lerpInverse = true;
-                    targetIndex = 1;
-
-                    minZ = camOffsetZ;
-                    minY = transform.position.y;
-
-                    lerpMove = true;
-                    ratio = 0;
-                }
-            }
-            else
-            {
-                //Check if camera should be zooming in
-                if (lerpInverse == true)
-                {
-                    lerpInverse = false;
-                    targetIndex = 0;
-
-                    minZ = camOffsetZ;
-                    minY = transform.position.y;
-
-                    lerpMove = true;
-                    ratio = 0;
-                }
-            }
-
-            if (lerpMove == true)
-            {
-                //Lerp Y and Z values
-                currentY = Mathf.Lerp(minY, yTargets[targetIndex], ratio);
-                camOffsetZ = Mathf.Lerp(minZ, zTargets[targetIndex], ratio);
-
-                ratio += Time.deltaTime;
-
-                if (currentY == yTargets[targetIndex] && camOffsetZ == zTargets[targetIndex])
-                {
-                    lerpMove = false;
-                }
-            }
-
-            //Calculate camera midpoint
-            midPoint = (player1.position + player2.position) / 2;
+            adjustedCamOffsetZ += (maxDistance - zoomOutThreshold) * distanceMultiplier;
         }
-        transform.position = new Vector3(midPoint.x, midPoint.y + currentY - 3, midPoint.z - camOffsetZ);
+
+        // Calculate the desired camera position
+        Vector3 desiredCameraPosition = averagePosition + new Vector3(0, camOffsetY, -adjustedCamOffsetZ);
+
+        // Smoothly transition to the desired camera position
+        transform.position = Vector3.Lerp(transform.position, desiredCameraPosition, smoothSpeed * Time.deltaTime);
+
+        // Optionally, make the camera look at the average position
+        transform.LookAt(averagePosition);
     }
 }
