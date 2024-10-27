@@ -24,8 +24,6 @@ public class PlayerControl : MonoBehaviour
    
     public SFXManager sfxManager;
 
-
-    public bool addExtraAction = true;
     public bool isPlayerOne = false;
 
     public List<GameObject> blockPrefabs;
@@ -53,7 +51,6 @@ public class PlayerControl : MonoBehaviour
         bool isAction3 = isPlayerOne ? Input.GetKey(KeyCode.S) : Input.GetKey(KeyCode.DownArrow);
         bool isAction4 = isPlayerOne ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.RightArrow);
         bool isAction5 = isPlayerOne ? Input.GetKey(KeyCode.LeftShift) : Input.GetKey(KeyCode.RightShift);
-        bool isAction6 = isPlayerOne ? Input.GetKey(KeyCode.LeftControl) : Input.GetKey(KeyCode.RightControl);
 
         Vector3 moveDirection = Vector3.zero;
 
@@ -134,16 +131,6 @@ public class PlayerControl : MonoBehaviour
             {
                 BlockType block = actionList[3];
                 moveDirection += doActionBlock(block);
-            }
-
-            if (addExtraAction)
-            {
-                if (isAction6)
-                {
-                    BlockType block = actionList[4];
-                    moveDirection += doActionBlock(block);
-
-                }
             }
         }
 

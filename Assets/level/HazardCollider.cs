@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HazardCollider : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("PlayerCharacters") == true)
+        if (other.gameObject.CompareTag("PlayerCharacters") == true)
         {
-            collision.transform.root.GetComponentInChildren<PlayerControl>().damaged();
+            other.transform.root.GetComponentInChildren<PlayerControl>().damaged();
             print("damage");
         }
     }
