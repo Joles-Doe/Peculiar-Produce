@@ -115,6 +115,7 @@ public class PlayerControl : MonoBehaviour
             {
                 BlockType block = actionList[0];
                 moveDirection += doActionBlock(block);
+
             }
 
             if (isAction2)
@@ -182,7 +183,7 @@ public class PlayerControl : MonoBehaviour
 
     public void damaged()
     {
-        print("Ouch!");
+        sfxManager.PlayDamageSFX(audioSource, isPlayerOne);
         BlockType lostBlock = loseBlock();
         ThrowBlock(lostBlock);
     }
@@ -219,20 +220,26 @@ public class PlayerControl : MonoBehaviour
         switch (type) {
             case BlockType.UP:
                 moveDirection = Vector3.forward;
+                sfxManager.PlayStepSFX(audioSource);
+
                 break;
             case BlockType.LEFT:
                 moveDirection = Vector3.left;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.DOWN:
                 moveDirection = Vector3.back;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.RIGHT:
                 moveDirection = Vector3.right;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.JUMP:
                 //gravity and jumping
-                if (isGrounded) //isGrounded
+                if (isGrounded) 
                 {
+                    sfxManager.PlayJumpSFX(audioSource,isPlayerOne);
                     velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
                     StartCoroutine(JumpWait());
                 }
@@ -251,7 +258,9 @@ public class PlayerControl : MonoBehaviour
 
     public BlockType PickupBlock()
     {
-        if (closeBlock != null) {
+        if (closeBlock != null) 
+        {
+            sfxManager.PlayPickupSFX(audioSource);
             BlockType blockType = closeBlock.blockType;
             Destroy(closeBlock.gameObject);
             return blockType;
@@ -289,6 +298,8 @@ public class PlayerControl : MonoBehaviour
                 prefabname = "climbblock";
                 break;
         }
+
+        sfxManager.PlayDropSFX(audioSource);
 
         GameObject prefab = Resources.Load(prefabname) as GameObject;
 
