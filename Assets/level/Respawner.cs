@@ -25,7 +25,14 @@ public class Respawner : MonoBehaviour
             player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
             player1.GetComponentInChildren<PlayerControl>().isPlayerOne = true;
 
-            cam.player1 = player1.transform.GetChild(0).transform;
+            player1.transform.GetChild(0).tag = "PlayerCharacters";
+
+
+
+            //print(spawnLocation);
+            //player1.transform.position = spawnLocation;
+            //player1.transform.GetChild(0).transform.position = Vector3.zero;        
+            //player1.transform.GetChild(1).transform.position = Vector3.zero;
         }
         
         if (_player == player2)
@@ -35,7 +42,9 @@ public class Respawner : MonoBehaviour
             player2 = Instantiate(player2Prefab, spawnLocation, Quaternion.identity);
             player2.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
 
-            cam.player2 = player2.transform.GetChild(0).transform;
+
+            player2.transform.GetChild(0).tag = "PlayerCharacters";
+
         }
     }
 }
