@@ -136,22 +136,12 @@ public class PlayerControl : MonoBehaviour
         moveDirection.Normalize();
 
         //print(velocity);
-        //if (!isClimbing)
-        //{
-        //    velocity.y += gravity * Time.deltaTime;
-        //}
-
-        //velocity.y = Mathf.Clamp(velocity.y, -25f, Mathf.Infinity);
-
-        if(CheckGround() && isGrounded && !isClimbing)
-        {
-            velocity.y = 0;
-            print("Grounded");
-        }
-        else
+        if (!isClimbing)
         {
             velocity.y += gravity * Time.deltaTime;
         }
+
+        velocity.y = Mathf.Clamp(velocity.y, -10f, Mathf.Infinity);
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -241,7 +231,7 @@ public class PlayerControl : MonoBehaviour
                 break;
             case BlockType.JUMP:
                 //gravity and jumping
-                if (CheckGround()) //isGrounded
+                if (isGrounded) //isGrounded
                 {
                     velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
                     StartCoroutine(JumpWait());
@@ -326,8 +316,5 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    public bool CheckGround()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 0.1f, LayerMask.GetMask("EnvironmentCollider"));
-    }
+  
 }
