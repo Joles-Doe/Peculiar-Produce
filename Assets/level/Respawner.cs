@@ -6,6 +6,8 @@ public class Respawner : MonoBehaviour
 {
     public CameraControl cam;
 
+    public GameObject mainMenu;
+
     public GameObject player1Prefab;
     public GameObject player2Prefab;
 
