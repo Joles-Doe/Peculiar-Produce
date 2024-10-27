@@ -37,6 +37,9 @@ public class SFXManager : MonoBehaviour
         if(_playerOne)
         {
             
+            int choice = Random.Range(1,2);
+
+            
         }
     }
 
