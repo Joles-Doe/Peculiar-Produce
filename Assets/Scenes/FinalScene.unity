@@ -4342,13 +4342,14 @@ MonoBehaviour:
   mJumpSFX:
   - {fileID: 8300000, guid: 496223322523f784ca78e16a161401f1, type: 3}
   - {fileID: 8300000, guid: d0f7939919c64a247a708c7131249794, type: 3}
-  sdeathSFX: {fileID: 8300000, guid: 2db5cfb2cc85c3e46b1b21b4a3953d4d, type: 3}
-  mdeathSFX: {fileID: 8300000, guid: cdda7f0297d51b5459956df4d6360e09, type: 3}
+  sDamageSFX: {fileID: 8300000, guid: 2db5cfb2cc85c3e46b1b21b4a3953d4d, type: 3}
+  sdeathSFX: {fileID: 8300000, guid: 178a9d677a4ff06439d774952b95c684, type: 3}
+  mDamageSFX: {fileID: 8300000, guid: cdda7f0297d51b5459956df4d6360e09, type: 3}
+  mdeathSFX: {fileID: 8300000, guid: b98cc8c1ba1cf2041b846c8616c03e96, type: 3}
   sCheerSFX: {fileID: 8300000, guid: 3ba32109e117698429d9909107980b3a, type: 3}
-  mCheerSFX: {fileID: 0}
+  mCheerSFX: {fileID: 8300000, guid: a583fc244ebab804a986d39bc1d75b72, type: 3}
   pickupSFX: {fileID: 8300000, guid: 8496851d3d2069449acf1f407c117148, type: 3}
   dropSFX: {fileID: 8300000, guid: fd2f37291c06f7549bbe37026f8c7b36, type: 3}
-  source: {fileID: 0}
 --- !u!4 &388605425
 Transform:
   m_ObjectHideFlags: 0
@@ -8982,6 +8983,14 @@ PrefabInstance:
       propertyPath: jumpHeight
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
+      propertyPath: sfxManager
+      value: 
+      objectReference: {fileID: 388605424}
+    - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1937905639}
     - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
       propertyPath: actionList.Array.size
       value: 5
@@ -13747,11 +13756,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 1
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4162253513501663206, guid: 3731c5cedcb7d204dac089e86fcf6998, type: 3}
 --- !u!1 &1161344271 stripped
@@ -20068,6 +20077,14 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
+      propertyPath: sfxManager
+      value: 
+      objectReference: {fileID: 388605424}
+    - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1874631861}
     - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
       propertyPath: actionList.Array.size
       value: 5
