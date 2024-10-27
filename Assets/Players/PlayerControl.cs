@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
 
     public float moveSpeed = 3f;
     public float rotationSpeed = 5f;
-    public float jumpHeight = 10f;
+    public float jumpHeight = 3f;
     public float gravity = -25f;
     public float climbSpeed = 5.0f;
     public bool isGrounded = true;
