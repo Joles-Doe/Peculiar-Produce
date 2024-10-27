@@ -4325,13 +4325,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d9bac85e891064984fbb26a38fa1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepSFX: []
-  sJumpSFX: []
-  mJumpSFX: []
-  sdeathSFX: {fileID: 0}
-  mdeathSFX: {fileID: 0}
-  pickupSFX: {fileID: 0}
-  dropSFX: {fileID: 0}
+  footstepSFX:
+  - {fileID: 8300000, guid: 281d332d9aacfeb4b9217d8dbdfa44ec, type: 3}
+  - {fileID: 8300000, guid: 5c8e9ef81dc84474fa5a0f51ce8ec286, type: 3}
+  - {fileID: 8300000, guid: a35da8c5675094e4b9c4b36602cb8ee9, type: 3}
+  - {fileID: 8300000, guid: af5adcbfaac77374eae979e894fec467, type: 3}
+  - {fileID: 8300000, guid: 0c688e00c2b80d14dac1000b6fd3a140, type: 3}
+  - {fileID: 8300000, guid: 4a5999fa71432a54fb3c757705ba9899, type: 3}
+  - {fileID: 8300000, guid: 6ec7d94eda7c24d458c673b021d41652, type: 3}
+  - {fileID: 8300000, guid: 0f10231dcfc9f194b88ef123a5e05039, type: 3}
+  - {fileID: 8300000, guid: 8245d9670e1b2254299eb52f529b78e9, type: 3}
+  sJumpSFX:
+  - {fileID: 8300000, guid: b7178f33d80b44942bbd909662eb80ff, type: 3}
+  - {fileID: 8300000, guid: 0355a080e2387d24db0b3c336bcb5b65, type: 3}
+  - {fileID: 8300000, guid: 8544e6f7af4ddb34889cc71e1b0a69bc, type: 3}
+  mJumpSFX:
+  - {fileID: 8300000, guid: 496223322523f784ca78e16a161401f1, type: 3}
+  - {fileID: 8300000, guid: d0f7939919c64a247a708c7131249794, type: 3}
+  sdeathSFX: {fileID: 8300000, guid: 2db5cfb2cc85c3e46b1b21b4a3953d4d, type: 3}
+  mdeathSFX: {fileID: 8300000, guid: cdda7f0297d51b5459956df4d6360e09, type: 3}
+  sCheerSFX: {fileID: 8300000, guid: 3ba32109e117698429d9909107980b3a, type: 3}
+  mCheerSFX: {fileID: 0}
+  pickupSFX: {fileID: 8300000, guid: 8496851d3d2069449acf1f407c117148, type: 3}
+  dropSFX: {fileID: 8300000, guid: fd2f37291c06f7549bbe37026f8c7b36, type: 3}
+  source: {fileID: 0}
 --- !u!4 &388605425
 Transform:
   m_ObjectHideFlags: 0

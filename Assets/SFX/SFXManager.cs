@@ -13,19 +13,32 @@ public class SFXManager : MonoBehaviour
 
     public AudioClip sdeathSFX;
     public AudioClip mdeathSFX;
+    public AudioClip sCheerSFX;
+    public AudioClip mCheerSFX;
     public AudioClip pickupSFX;
     public AudioClip dropSFX;
 
+    public AudioSource source;
 
-    // Start is called before the first frame update
-    void Start()
+    public void PlayDeathSFX(AudioSource _source, bool _playerOne)
     {
-        
+        if(_playerOne)
+        {
+            _source.PlayOneShot(mdeathSFX);
+        }
+        else
+        {
+            _source.PlayOneShot(sdeathSFX);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayJumpSFX(AudioSource _source, bool _playerOne)
     {
-        
+        if(_playerOne)
+        {
+            
+        }
     }
+
+
 }
