@@ -30,6 +30,7 @@ public class Respawner : MonoBehaviour
             player1 = Instantiate(player1Prefab, spawnLocation, Quaternion.identity);
             player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
             playerScript = player1.GetComponentInChildren<PlayerControl>();
+            playerScript.sfxManager = sfxManager;
             sfxManager.PlayDeathSFX(playerScript.audioSource, playerScript.isPlayerOne);
             playerScript.isPlayerOne = true;
             player1.transform.GetChild(0).tag = "PlayerCharacters";
@@ -56,6 +57,7 @@ public class Respawner : MonoBehaviour
             player2 = Instantiate(player2Prefab, spawnLocation, Quaternion.identity);
             player2.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
             playerScript = player2.GetComponentInChildren<PlayerControl>();
+            playerScript.sfxManager = sfxManager;
             sfxManager.PlayDeathSFX(playerScript.audioSource, playerScript.isPlayerOne);
             player2.transform.GetChild(0).tag = "PlayerCharacters";
 
