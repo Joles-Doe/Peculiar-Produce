@@ -6,11 +6,6 @@ public class KillBoxCollider : MonoBehaviour
 {
     public Respawner respawner;
 
-    private void Update()
-    {
-        print("e");
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         print("Collide");

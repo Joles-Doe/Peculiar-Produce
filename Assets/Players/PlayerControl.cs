@@ -140,7 +140,7 @@ public class PlayerControl : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
         }
 
-        Mathf.Clamp(velocity.y, -5f, Mathf.Infinity);
+        velocity.y = Mathf.Clamp(velocity.y, -25f, Mathf.Infinity);
 
         controller.Move(velocity * Time.deltaTime);
 
