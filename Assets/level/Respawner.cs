@@ -6,11 +6,15 @@ public class Respawner : MonoBehaviour
 {
     public CameraControl cam;
 
+    public GameObject mainMenu;
+
     public GameObject player1Prefab;
     public GameObject player2Prefab;
 
     public GameObject player1;
     public GameObject player2;
+
+    PlayerControl playerScript;
 
     Vector3 spawnLocation;
 
@@ -21,13 +25,21 @@ public class Respawner : MonoBehaviour
         {
             spawnLocation = player1.GetComponent<CheckpointHolder>().GetRespawnLocation();
             Destroy(player1);
+           
             player1 = Instantiate(player1Prefab, spawnLocation, Quaternion.identity);
             player1.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
-            player1.GetComponentInChildren<PlayerControl>().isPlayerOne = true;
-
+            playerScript = player1.GetComponentInChildren<PlayerControl>();
+            playerScript.isPlayerOne = true;
             player1.transform.GetChild(0).tag = "PlayerCharacters";
 
-
+            Transform playerUI = mainMenu.transform.GetChild(0);
+            foreach (Transform child in playerUI.GetComponentsInChildren<Transform>())
+            {
+                if (child.name != "Player1")
+                {
+                    child.GetComponent<UiBlocks>().playerControl = playerScript;
+                }
+            }
 
             //print(spawnLocation);
             //player1.transform.position = spawnLocation;
@@ -41,10 +53,17 @@ public class Respawner : MonoBehaviour
             Destroy(player2);
             player2 = Instantiate(player2Prefab, spawnLocation, Quaternion.identity);
             player2.GetComponent<CheckpointHolder>().SetRespawnLocation(spawnLocation);
-
-
+            playerScript = player2.GetComponentInChildren<PlayerControl>();
             player2.transform.GetChild(0).tag = "PlayerCharacters";
 
+            Transform playerUI = mainMenu.transform.GetChild(1);
+            foreach (Transform child in playerUI.GetComponentsInChildren<Transform>())
+            {
+                if (child.name != "Player2")
+                {
+                    child.GetComponent<UiBlocks>().playerControl = playerScript;
+                }
+            }
         }
     }
 }

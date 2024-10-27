@@ -12,11 +12,8 @@ public class BridgeScript : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void DropBridge()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            rb.isKinematic = false;
-        }
+        rb.isKinematic = false;
     }
 }
