@@ -20,6 +20,10 @@ public class PlayerControl : MonoBehaviour
     public Animator animator;
     public CharacterController controller;
 
+    public List<AudioClip> footstepSFX = new();
+    public AudioSource audio;
+
+
     public bool addExtraAction = true;
     public bool isPlayerOne = false;
 
@@ -34,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audio=GetComponent<AudioSource>();
 
         velocity = Vector3.zero;
         jumpHeight = 3f;
