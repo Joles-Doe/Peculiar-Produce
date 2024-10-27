@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f, LayerMask.GetMask("Climb")))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f, LayerMask.GetMask("Climb")) && isGrounded)
         {
             isClimbing = true;
         } else
