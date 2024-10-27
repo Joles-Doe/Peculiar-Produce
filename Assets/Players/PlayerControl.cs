@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     public float climbSpeed = 5.0f;
     public bool isGrounded = true;
     public bool isClimbing = false;
+    public bool canPickup = true;
 
     public Animator animator;
     public CharacterController controller;
@@ -89,14 +90,21 @@ public class PlayerControl : MonoBehaviour
 
             if (throwIndex >= 0)
             {
-                if (actionList[throwIndex] != BlockType.NONE)
+                if (canPickup)
                 {
-                    BlockType lostBlock = actionList[throwIndex];
-                    ThrowBlock(lostBlock);
-                    actionList[throwIndex] = BlockType.NONE;
-                } else
-                {
-                    setBlock(PickupBlock(), throwIndex);
+                    if (actionList[throwIndex] != BlockType.NONE)
+                    {
+                        BlockType lostBlock = actionList[throwIndex];
+                        ThrowBlock(lostBlock);
+                        actionList[throwIndex] = BlockType.NONE;
+                    }
+                    else
+                    {
+                        setBlock(PickupBlock(), throwIndex);
+                    }
+
+                    StartCoroutine(PickupWait());
+
                 }
             }
         }
@@ -201,19 +209,6 @@ public class PlayerControl : MonoBehaviour
                 closeBlock = block.GetComponent<BlockBehaviour>();
             }
         }
-
-        // If closeBlock is still null, no blocks were found within the max distance
-        if (closeBlock == null)
-        {
-            //Debug.Log("No blocks within the specified distance.");
-        }
-        else
-        {
-           // Debug.Log("Closest block found at distance: " + closestDistance);
-        }
-
-
-
     }
 
     public Vector3 doActionBlock(BlockType type)
@@ -305,6 +300,13 @@ public class PlayerControl : MonoBehaviour
         isGrounded = false;
         yield return new WaitForSeconds(2.0f);
         isGrounded = true;
+    }
+
+    public IEnumerator PickupWait()
+    {
+        canPickup = false;
+        yield return new WaitForSeconds(0.5f);
+        canPickup = true;
     }
 
     public void setBlock(BlockType block, int id)
