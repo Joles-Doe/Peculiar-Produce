@@ -168,6 +168,7 @@ public class PlayerControl : MonoBehaviour
 
     public void damaged()
     {
+        print("Ouch!");
         BlockType lostBlock = loseBlock();
         ThrowBlock(lostBlock);
     }
