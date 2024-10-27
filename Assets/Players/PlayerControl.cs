@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public Vector3 velocity;
 
-    public float moveSpeed = 10f;
+    public float moveSpeed = 3f;
     public float rotationSpeed = 5f;
     public float jumpHeight = 10f;
     public float gravity = -25f;
@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
     public Animator animator;
     public CharacterController controller;
 
-
+    public bool addExtraAction = true;
     public bool isPlayerOne = false;
 
     public List<GameObject> blockPrefabs;
@@ -88,6 +88,9 @@ public class PlayerControl : MonoBehaviour
                     BlockType lostBlock = actionList[throwIndex];
                     ThrowBlock(lostBlock);
                     actionList[throwIndex] = BlockType.NONE;
+                } else
+                {
+                    setBlock(PickupBlock(), throwIndex);
                 }
             }
         }
@@ -97,60 +100,35 @@ public class PlayerControl : MonoBehaviour
             if (isAction1)
             {
                 BlockType block = actionList[0];
-                if (block == BlockType.NONE)
-                {
-                    setBlock(PickupBlock(), 0);
-                }
-                else
-                {
-                    moveDirection += doActionBlock(block);
-                }
+                moveDirection += doActionBlock(block);
             }
 
             if (isAction2)
             {
                 BlockType block = actionList[1];
-                if (block == BlockType.NONE)
-                {
-                    setBlock(PickupBlock(), 1);
-                }
-                else
-                {
-                    moveDirection += doActionBlock(block);
-                }
+                moveDirection += doActionBlock(block);
             }
 
             if (isAction3)
             {
                 BlockType block = actionList[2];
-                if (block == BlockType.NONE)
-                {
-                    setBlock(PickupBlock(), 2);
-                }
-                else
-                {
-                    moveDirection += doActionBlock(block);
-                }
+                moveDirection += doActionBlock(block);
             }
 
             if (isAction4)
             {
                 BlockType block = actionList[3];
-                if (block == BlockType.NONE)
-                {
-                    setBlock(PickupBlock(), 3);
-                }
-                else
-                {
-                    moveDirection += doActionBlock(block);
-                }
+                moveDirection += doActionBlock(block);
             }
 
-            if (isAction6)
+            if (addExtraAction)
             {
-                BlockType block = actionList[4];
-                moveDirection += doActionBlock(block);
+                if (isAction6)
+                {
+                    BlockType block = actionList[4];
+                    moveDirection += doActionBlock(block);
 
+                }
             }
         }
 
