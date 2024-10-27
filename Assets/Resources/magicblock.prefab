@@ -55,10 +55,10 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4d352b693ad3e904fb94ea65cf14937d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 64c97bd951e502347a3c41e7fb45bb91, type: 2}
+      objectReference: {fileID: 2100000, guid: 8b5bfa1f905f214408fc8f1412ba1710, type: 2}
     - target: {fileID: 919132149155446097, guid: 4d352b693ad3e904fb94ea65cf14937d, type: 3}
       propertyPath: m_Name
-      value: climbblock
+      value: magicblock
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d352b693ad3e904fb94ea65cf14937d, type: 3}
       propertyPath: m_Layer
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a87aecf704f85742aaf76432f57d3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 5
+  blockType: 6
   rb: {fileID: 0}
   collided: 0
   picked: 0

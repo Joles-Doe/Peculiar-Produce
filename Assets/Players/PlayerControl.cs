@@ -251,6 +251,10 @@ public class PlayerControl : MonoBehaviour
                     velocity.y += climbSpeed * Time.deltaTime;
                 }
                 break;
+
+            case BlockType.MAGIC:
+                TriggerExplosion(transform.position);
+                break;
         }
 
         return moveDirection;
@@ -297,6 +301,9 @@ public class PlayerControl : MonoBehaviour
             case BlockType.CLIMB:
                 prefabname = "climbblock";
                 break;
+            case BlockType.MAGIC:
+                prefabname = "magicblock";
+                break;
         }
 
         sfxManager.PlayDropSFX(audioSource);
@@ -309,7 +316,7 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator JumpWait()
     {
         isGrounded = false;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.8f);
         isGrounded = true;
     }
 
@@ -333,6 +340,16 @@ public class PlayerControl : MonoBehaviour
         return block;
     }
 
+    public void TriggerExplosion(Vector3 position)
+    {
+        GameObject explosionPrefab = Resources.Load("magicsystem") as GameObject;
+        // Instantiate the explosion prefab at the specified position and with no rotation
+        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
 
-  
+        // Destroy the explosion after 10 seconds
+        Destroy(explosion, 10f);
+    }
+
+
+
 }
