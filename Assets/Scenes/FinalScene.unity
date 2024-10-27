@@ -6083,10 +6083,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 228205227}
     m_Modifications:
-    - target: {fileID: -7635826562936255635, guid: 3a7c1aef7744b414a9e85f0bb1e89449, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d45f96ba776b7d542b86d9549f6ff7c6, type: 2}
     - target: {fileID: -8679921383154817045, guid: 3350bd2f4b42da74784e685acb895607, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.565928
@@ -6155,6 +6151,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f0ac25b6542f3fc4a93efd7ff8a387c8, type: 2}
+    - target: {fileID: -7635826562936255635, guid: 3a7c1aef7744b414a9e85f0bb1e89449, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d45f96ba776b7d542b86d9549f6ff7c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8908,6 +8908,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
       propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
+      propertyPath: jumpHeight
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}

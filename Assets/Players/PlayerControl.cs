@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public Vector3 velocity;
 
     public float moveSpeed = 3f;
@@ -135,12 +135,22 @@ public class PlayerControl : MonoBehaviour
         moveDirection.Normalize();
 
         //print(velocity);
-        if (!isClimbing)
+        //if (!isClimbing)
+        //{
+        //    velocity.y += gravity * Time.deltaTime;
+        //}
+
+        //velocity.y = Mathf.Clamp(velocity.y, -25f, Mathf.Infinity);
+
+        if(CheckGround() && isGrounded && !isClimbing)
+        {
+            velocity.y = 0;
+            print("Grounded");
+        }
+        else
         {
             velocity.y += gravity * Time.deltaTime;
         }
-
-        velocity.y = Mathf.Clamp(velocity.y, -25f, Mathf.Infinity);
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -230,7 +240,7 @@ public class PlayerControl : MonoBehaviour
                 break;
             case BlockType.JUMP:
                 //gravity and jumping
-                if (isGrounded)
+                if (CheckGround()) //isGrounded
                 {
                     velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
                     StartCoroutine(JumpWait());
@@ -312,5 +322,11 @@ public class PlayerControl : MonoBehaviour
         BlockType block = actionList[Random.Range(0, actionList.Count)];
         actionList[id] = BlockType.NONE;
         return block;
+    }
+
+
+    public bool CheckGround()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.1f, LayerMask.GetMask("EnvironmentCollider"));
     }
 }
