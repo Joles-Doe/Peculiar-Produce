@@ -5065,6 +5065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mike_ill
       objectReference: {fileID: 0}
+    - target: {fileID: 2509827170250656903, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5630702516374927324, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.343496
@@ -10175,6 +10179,18 @@ PrefabInstance:
     - target: {fileID: 5323087532099215969, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
       propertyPath: m_Name
       value: Share_on
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
+      propertyPath: actionList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887119423942442984, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
+      propertyPath: actionList.Array.data[4]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
