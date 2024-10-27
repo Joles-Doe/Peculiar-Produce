@@ -4810,7 +4810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &414620130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13747,11 +13747,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 1
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4162253513501663206, guid: 3731c5cedcb7d204dac089e86fcf6998, type: 3}
 --- !u!1 &1161344271 stripped
@@ -18375,7 +18375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1700072115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19985,6 +19985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194232}
+  mainMenu: {fileID: 1700072114}
   player1Prefab: {fileID: 525456995293327013, guid: 6c10fd6144dbfac4194dd1a4debe872f, type: 3}
   player2Prefab: {fileID: 5323087532099215969, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
   player1: {fileID: 40336912}
