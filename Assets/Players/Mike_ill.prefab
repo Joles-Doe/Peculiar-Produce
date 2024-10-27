@@ -3102,7 +3102,6 @@ MonoBehaviour:
   controller: {fileID: 3735915835780771038}
   audioSource: {fileID: 7263540203439643277}
   sfxManager: {fileID: 0}
-  addExtraAction: 1
   isPlayerOne: 1
   blockPrefabs:
   - {fileID: 1844171881039975964, guid: b4f8adf2262c25e4f877d3e79ae7817f, type: 3}
@@ -3111,7 +3110,8 @@ MonoBehaviour:
   - {fileID: 1844171881039975964, guid: 8eccec476a549a444a38ac4bfe391b48, type: 3}
   - {fileID: 1844171881039975964, guid: 979f800f1ef0d8f47a9216f6f36bcb23, type: 3}
   - {fileID: 1844171881039975964, guid: cf72d426c5a9f5e488e53d9ac0953887, type: 3}
-  actionList: 0000000001000000020000000300000004000000
+  - {fileID: 1844171881039975964, guid: 9052fc572db95704e87df79e3ec7e7a0, type: 3}
+  actionList: 00000000010000000200000003000000
 --- !u!82 &7263540203439643277
 AudioSource:
   m_ObjectHideFlags: 0
