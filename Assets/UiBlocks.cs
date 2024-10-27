@@ -39,6 +39,9 @@ public class UiBlocks : MonoBehaviour
             case BlockType.CLIMB:
                 newsprite = sprites[5];
                 break;
+            case BlockType.MAGIC:
+                newsprite = sprites[6];
+                break;
             case BlockType.NONE:
                 gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0);
                 break;

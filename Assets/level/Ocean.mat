@@ -52,7 +52,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 1
-    - _Water_Height: 0.05
+    - _Water_Height: 0.02
     - _Water_Noise_Scale: 2
     - _Water_Speed: 0.2
     m_Colors:

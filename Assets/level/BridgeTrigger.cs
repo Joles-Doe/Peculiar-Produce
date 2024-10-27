@@ -8,6 +8,9 @@ public class BridgeTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        bridge.DropBridge();
+        if (other.transform.root.CompareTag("Player") == true)
+        {
+            bridge.DropBridge();
+        }
     }
 }

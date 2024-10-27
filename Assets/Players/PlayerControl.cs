@@ -24,8 +24,6 @@ public class PlayerControl : MonoBehaviour
    
     public SFXManager sfxManager;
 
-
-    public bool addExtraAction = true;
     public bool isPlayerOne = false;
 
     public List<GameObject> blockPrefabs;
@@ -53,12 +51,11 @@ public class PlayerControl : MonoBehaviour
         bool isAction3 = isPlayerOne ? Input.GetKey(KeyCode.S) : Input.GetKey(KeyCode.DownArrow);
         bool isAction4 = isPlayerOne ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.RightArrow);
         bool isAction5 = isPlayerOne ? Input.GetKey(KeyCode.LeftShift) : Input.GetKey(KeyCode.RightShift);
-        bool isAction6 = isPlayerOne ? Input.GetKey(KeyCode.LeftControl) : Input.GetKey(KeyCode.RightControl);
 
         Vector3 moveDirection = Vector3.zero;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f, LayerMask.GetMask("Climb")))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f, LayerMask.GetMask("Climb")) && isGrounded)
         {
             isClimbing = true;
         } else
@@ -115,6 +112,7 @@ public class PlayerControl : MonoBehaviour
             {
                 BlockType block = actionList[0];
                 moveDirection += doActionBlock(block);
+
             }
 
             if (isAction2)
@@ -133,16 +131,6 @@ public class PlayerControl : MonoBehaviour
             {
                 BlockType block = actionList[3];
                 moveDirection += doActionBlock(block);
-            }
-
-            if (addExtraAction)
-            {
-                if (isAction6)
-                {
-                    BlockType block = actionList[4];
-                    moveDirection += doActionBlock(block);
-
-                }
             }
         }
 
@@ -182,7 +170,7 @@ public class PlayerControl : MonoBehaviour
 
     public void damaged()
     {
-        print("Ouch!");
+        sfxManager.PlayDamageSFX(audioSource, isPlayerOne);
         BlockType lostBlock = loseBlock();
         ThrowBlock(lostBlock);
     }
@@ -219,20 +207,26 @@ public class PlayerControl : MonoBehaviour
         switch (type) {
             case BlockType.UP:
                 moveDirection = Vector3.forward;
+                sfxManager.PlayStepSFX(audioSource);
+
                 break;
             case BlockType.LEFT:
                 moveDirection = Vector3.left;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.DOWN:
                 moveDirection = Vector3.back;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.RIGHT:
                 moveDirection = Vector3.right;
+                sfxManager.PlayStepSFX(audioSource);
                 break;
             case BlockType.JUMP:
                 //gravity and jumping
-                if (isGrounded) //isGrounded
+                if (isGrounded) 
                 {
+                    sfxManager.PlayJumpSFX(audioSource,isPlayerOne);
                     velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
                     StartCoroutine(JumpWait());
                 }
@@ -244,6 +238,10 @@ public class PlayerControl : MonoBehaviour
                     velocity.y += climbSpeed * Time.deltaTime;
                 }
                 break;
+
+            case BlockType.MAGIC:
+                TriggerExplosion(transform.position);
+                break;
         }
 
         return moveDirection;
@@ -251,7 +249,9 @@ public class PlayerControl : MonoBehaviour
 
     public BlockType PickupBlock()
     {
-        if (closeBlock != null) {
+        if (closeBlock != null) 
+        {
+            sfxManager.PlayPickupSFX(audioSource);
             BlockType blockType = closeBlock.blockType;
             Destroy(closeBlock.gameObject);
             return blockType;
@@ -288,7 +288,12 @@ public class PlayerControl : MonoBehaviour
             case BlockType.CLIMB:
                 prefabname = "climbblock";
                 break;
+            case BlockType.MAGIC:
+                prefabname = "magicblock";
+                break;
         }
+
+        sfxManager.PlayDropSFX(audioSource);
 
         GameObject prefab = Resources.Load(prefabname) as GameObject;
 
@@ -298,7 +303,7 @@ public class PlayerControl : MonoBehaviour
     public IEnumerator JumpWait()
     {
         isGrounded = false;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.8f);
         isGrounded = true;
     }
 
@@ -322,6 +327,18 @@ public class PlayerControl : MonoBehaviour
         return block;
     }
 
+    public void TriggerExplosion(Vector3 position)
+    {
+        GameObject explosionPrefab = Resources.Load("magicsystem") as GameObject;
+        // Instantiate the explosion prefab at the specified position and with no rotation
+        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
 
-  
+        sfxManager.PlayCheerSFX(audioSource,isPlayerOne);
+
+        // Destroy the explosion after 10 seconds
+        Destroy(explosion, 10f);
+    }
+
+
+
 }

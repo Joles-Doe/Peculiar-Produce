@@ -59,14 +59,14 @@ public class SFXManager : MonoBehaviour
             
             int choice = Random.Range(0,2);
 
-            _source.clip = mJumpSFX[choice];
+            _source.PlayOneShot( mJumpSFX[choice]);
             
             
         }
         else
         {
             int choice = Random.Range(0,3);
-            _source.clip = sJumpSFX[choice];
+            _source.PlayOneShot(sJumpSFX[choice]);
             
         }
 
@@ -92,8 +92,13 @@ public class SFXManager : MonoBehaviour
     {
         int choice = Random.Range(0, footstepSFX.Count);
 
-        _source.clip = footstepSFX[choice];
-        _source.Play();
+        if(!_source.isPlaying)
+        {
+            _source.clip = footstepSFX[choice];
+            _source.volume = 0.5f; 
+            _source.Play();
+        }
+       
 
     }
 
