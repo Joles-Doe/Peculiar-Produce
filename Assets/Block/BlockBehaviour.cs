@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum BlockType
+{
+    UP,
+    LEFT,
+    DOWN,
+    RIGHT,
+    JUMP,
+    CLIMB,
+    MAGIC,
+    NONE
+}
+
 public class BlockBehaviour : MonoBehaviour
 {
 

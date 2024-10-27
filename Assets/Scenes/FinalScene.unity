@@ -18364,7 +18364,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+  m_IsActive: 0
 --- !u!114 &1700072115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19979,7 +19980,6 @@ MonoBehaviour:
   player2Prefab: {fileID: 5323087532099215969, guid: 26264970e6647d44e91d24c1772ad587, type: 3}
   player1: {fileID: 40336912}
   player2: {fileID: 1161344271}
-  sfxManager: {fileID: 388605424}
 --- !u!4 &1871494672
 Transform:
   m_ObjectHideFlags: 0
