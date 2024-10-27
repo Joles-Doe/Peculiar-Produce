@@ -333,6 +333,8 @@ public class PlayerControl : MonoBehaviour
         // Instantiate the explosion prefab at the specified position and with no rotation
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
 
+        sfxManager.PlayCheerSFX(audioSource,isPlayerOne);
+
         // Destroy the explosion after 10 seconds
         Destroy(explosion, 10f);
     }
