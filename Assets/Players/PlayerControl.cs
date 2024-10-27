@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
         animator = GetComponent<Animator>();
 
         velocity = Vector3.zero;
+        jumpHeight = 3f;
     }
 
     // Update is called once per frame
