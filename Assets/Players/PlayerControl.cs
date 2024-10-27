@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public Vector3 velocity;
 
     public float moveSpeed = 3f;
     public float rotationSpeed = 5f;
-    public float jumpHeight = 10f;
+    public float jumpHeight = 3f;
     public float gravity = -25f;
     public float climbSpeed = 5.0f;
     public bool isGrounded = true;
@@ -19,6 +19,10 @@ public class PlayerControl : MonoBehaviour
 
     public Animator animator;
     public CharacterController controller;
+    public AudioSource audioSource;
+   
+    public SFXManager sfxManager;
+
 
     public bool addExtraAction = true;
     public bool isPlayerOne = false;
@@ -34,8 +38,10 @@ public class PlayerControl : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource=GetComponent<AudioSource>();
 
         velocity = Vector3.zero;
+        jumpHeight = 3f;
     }
 
     // Update is called once per frame
@@ -140,7 +146,7 @@ public class PlayerControl : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
         }
 
-        velocity.y = Mathf.Clamp(velocity.y, -25f, Mathf.Infinity);
+        velocity.y = Mathf.Clamp(velocity.y, -10f, Mathf.Infinity);
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -230,7 +236,7 @@ public class PlayerControl : MonoBehaviour
                 break;
             case BlockType.JUMP:
                 //gravity and jumping
-                if (isGrounded)
+                if (isGrounded) //isGrounded
                 {
                     velocity.y = Mathf.Sqrt(jumpHeight * -0.8f * gravity);
                     StartCoroutine(JumpWait());
@@ -313,4 +319,7 @@ public class PlayerControl : MonoBehaviour
         actionList[id] = BlockType.NONE;
         return block;
     }
+
+
+  
 }
